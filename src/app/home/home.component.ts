@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { SidebarComponent } from '../components/sidebar/sidebar.component';
-import { NavbarComponent } from '../components/navbar/navbar.component';
+import { Transaksi } from './home';
+import { HomeService } from './HomeService';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [RouterModule, SidebarComponent, NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+  transaksi$: Observable<Array<Transaksi>>;
+  constructor(private service: HomeService) {
+    console.log('Transaksi List is Created!');
+    this.transaksi$ = this.service.getTopTransaksi();
+  }
 }
