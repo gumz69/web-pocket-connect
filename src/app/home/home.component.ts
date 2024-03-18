@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Transaksi } from './home';
-import { HomeService } from './HomeService';
+import { HomeService } from './home.service';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Injectable } from '@angular/core';
 import { GetTransaksiResponse, Transaksi } from './home';
 import { HttpClient } from '@angular/common/http';
