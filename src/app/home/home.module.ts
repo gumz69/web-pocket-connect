@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NavbarComponent } from "../components/navbar/navbar.component";
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
-import { RoutingModule } from "./routing.module";
+import { RoutingModule } from "./routing.module";;
 
 @NgModule({
   declarations: [
@@ -16,6 +16,8 @@ import { RoutingModule } from "./routing.module";
     CommonModule,
     RoutingModule,
     HttpClientModule,
-  ]
+
+  ],
+  bootstrap: [HomeComponent]
 })
 export class HomeModule { }
