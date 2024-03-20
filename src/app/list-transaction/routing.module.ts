@@ -1,17 +1,17 @@
 import { RouterModule, Routes } from "@angular/router";
-import { HomeComponent } from "./home.component";
 import { NgModule } from "@angular/core";
+import { ListTransactionComponent } from "./list-transaction.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list',
+    redirectTo: '',
     pathMatch: 'full',
   },
   {
     path: '',
-    component: HomeComponent,
-  },
+    component: ListTransactionComponent,
+  }
 ];
 
 @NgModule({

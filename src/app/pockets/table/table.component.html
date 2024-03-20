@@ -1,0 +1,72 @@
+<div class="relative overflow-x-auto p-4">
+  <div
+    class="block flex-1 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+  >
+    <div class="flex flex-row justify-between">
+      <h5
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        Pocket
+      </h5>
+      <a [routerLink]="['/pocket-detail']" class="font-semibold" style="color: #005F7B;">Lihat Lainnya</a>
+    </div>
+
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">No.</th>
+          <th scope="col" class="px-6 py-3">Jenis Pocket</th>
+          <th scope="col" class="px-6 py-3">Kategori Pocket</th>
+          <th scope="col" class="px-6 py-3">Deskripsi</th>
+          <th scope="col" class="px-6 py-3">Pembuat</th>
+          <th scope="col" class="px-6 py-3">Tanggal Dibuat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            1.
+          </th>
+          <td class="px-6 py-4">Tabungan</td>
+          <td class="px-6 py-4">Liburan</td>
+          <td class="px-6 py-4">-</td>
+          <td class="px-6 py-4">Brian</td>
+          <td class="px-6 py-4">20-04-2024 22:00:00</td>
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            2.
+          </th>
+          <td class="px-6 py-4">Tabungan</td>
+          <td class="px-6 py-4">Rumah</td>
+          <td class="px-6 py-4">-</td>
+          <td class="px-6 py-4">Vio</td>
+          <td class="px-6 py-4">20-04-2024 21:00:00</td>
+        </tr>
+        <tr class="bg-white dark:bg-gray-800">
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            3.
+          </th>
+          <td class="px-6 py-4">Pengeluaran</td>
+          <td class="px-6 py-4">Makanan</td>
+          <td class="px-6 py-4">-</td>
+          <td class="px-6 py-4">Steven</td>
+          <td class="px-6 py-4">20-04-2024 21:00:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

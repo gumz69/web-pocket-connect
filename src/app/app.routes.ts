@@ -1,15 +1,29 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
-    path: 'home',
+    path: 'categories',
     loadChildren: () =>
-      import("./home/home.module").then((value) => value.HomeModule),
+      import('./categories/categories.module').then((value) => value.CategoriesModule),
   },
+  {
+    path: 'pocket',
+    loadChildren: () =>
+      import('./pockets/pockets.module').then((value) => value.PocketsModule),
+  },
+  {
+    path: 'pocket-detail',
+    loadChildren: () =>
+      import('./detail-pocket/detail-pocket.module').then((value) => value.DetailPocketModule),
+  },
+  {
+    path: 'transaction-list',
+    loadChildren: () =>
+      import('./list-transaction/list-transaction.module').then((value) => value.ListTransactionModule),
+  }
 ];

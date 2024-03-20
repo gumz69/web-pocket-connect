@@ -27,7 +27,8 @@
   aria-label="Sidenav"
 >
   <div
-    class="overflow-y-auto py-5 px-3 h-full border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700" style="background-color: #005F7B;"
+    class="overflow-y-auto py-5 px-3 h-full border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+    style="background-color: #005f7b"
   >
     <div class="justify-center flex pl-6 pr-6 pt-1 pb-6">
       <img src="../../../assets/icon-logo.png" />
@@ -36,7 +37,7 @@
     <ul class="space-y-2">
       <li>
         <a
-          href="#"
+          [routerLink]="['/pocket']"
           class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-orange-400 dark:hover:bg-gray-700 group"
         >
           <img src="../../../assets/icon-pocket.svg" />
@@ -45,16 +46,16 @@
       </li>
       <li>
         <a
-          href="#"
+          [routerLink]="['/categories']"
           class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-orange-400 dark:hover:bg-gray-700 group"
         >
-          <img src="../../../assets/icon-user.svg" />
-          <span class="ml-3">Users</span>
+          <img src="../../../assets/icon-categories.svg" />
+          <span class="ml-3">Pocket Categories</span>
         </a>
       </li>
       <li>
         <a
-          href="#"
+          [routerLink]="['/transaction-list']"
           class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-orange-400 dark:hover:bg-gray-700 group"
         >
           <img src="../../../assets/icon-transaksi.svg" />
@@ -63,11 +64,11 @@
       </li>
       <li>
         <a
-          href="#"
+          [routerLink]="['/user']"
           class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-orange-400 dark:hover:bg-gray-700 group"
         >
-          <img src="../../../assets/icon-categories.svg" />
-          <span class="ml-3">Categories</span>
+          <img src="../../../assets/icon-user.svg" />
+          <span class="ml-3">Users</span>
         </a>
       </li>
     </ul>
