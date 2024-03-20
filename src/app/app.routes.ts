@@ -22,8 +22,18 @@ export const routes: Routes = [
       import('./detail-pocket/detail-pocket.module').then((value) => value.DetailPocketModule),
   },
   {
+    path: 'transaction',
+    loadChildren: () =>
+      import('./transactions/transactions.module').then((value) => value.TransactionModule),
+  },
+  {
     path: 'transaction-list',
     loadChildren: () =>
       import('./list-transaction/list-transaction.module').then((value) => value.ListTransactionModule),
+  },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./user/user.module').then((value) => value.UserModule),
   }
 ];

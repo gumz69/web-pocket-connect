@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import { JsonService } from '../../api/jsonservice.service';
 Chart.register(...registerables);
 @Component({
   selector: 'app-grafik',
@@ -8,7 +7,7 @@ Chart.register(...registerables);
   styleUrl: './grafik.component.css',
 })
 export class GrafikComponent implements OnInit {
-  constructor(private service: JsonService) {}
+
   chartdata: any;
   banyakPocket: any[] = [];
   bulanPocket: any[] = [];

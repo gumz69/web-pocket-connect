@@ -1,0 +1,52 @@
+
+<div class="relative overflow-x-auto p-4">
+  <div
+    class="block flex-1 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+  >
+    <div class="flex flex-row justify-between">
+      <h5
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        Transaksi Terakhir
+      </h5>
+      <a
+        [routerLink]="['/transaction-list']"
+        class="font-semibold"
+        style="color: #005f7b"
+        >Lihat Lainnya</a
+      >
+    </div>
+
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">No.</th>
+          <th scope="col" class="px-6 py-3">ID Transaksi</th>
+          <th scope="col" class="px-6 py-3">Nama Akun</th>
+          <th scope="col" class="px-6 py-3">Nomor Rekening</th>
+          <th scope="col" class="px-6 py-3">Jenis Transaksi</th>
+          <th scope="col" class="px-6 py-3">Waktu Transaksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            1.
+          </th>
+          <td class="px-6 py-4">09548</td>
+          <td class="px-6 py-4">Winston</td>
+          <td class="px-6 py-4">02475438</td>
+          <td class="px-6 py-4">Debit</td>
+          <td class="px-6 py-4">20-04-2024 22:00:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from './categories.service';
 import { CategoryPocket, TypePocket } from './categories';
 import Chart from 'chart.js/auto';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-categories',
@@ -25,6 +26,7 @@ export class CategoriesComponent implements OnInit {
   constructor(private services: CategoriesService) {}
 
   ngOnInit(): void {
+    initFlowbite();
     this.services.getTypePocket().subscribe((data) => {
       this.pocketCounts = data;
       this.pocketTabunganCounts = data.filter(

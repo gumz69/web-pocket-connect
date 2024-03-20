@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 declare var $: any;
 @Component({
-  selector: 'app-list-transaction',
-  templateUrl: './list-transaction.component.html',
-  styleUrl: './list-transaction.component.css'
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css'
 })
-export class ListTransactionComponent implements OnInit {
+export class UserComponent implements OnInit {
   ngOnInit(): void {
     initFlowbite();
     $('#exampleTable').DataTable();
