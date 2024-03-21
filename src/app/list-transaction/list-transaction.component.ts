@@ -25,20 +25,7 @@ export class ListTransactionComponent implements OnInit {
     this.selectedFilter = 'all';
     this.services.getListTransaction().subscribe((data) => {
       this.listTransaksi = data;
-      const dataTableData = data.map((item) => {
-        return { ...item, no: data.indexOf(item) + 1 };
-      });
-      $('#exampleTable').DataTable({
-        data: dataTableData,
-        columns: [
-          { title: 'No', data: 'no' },
-          { title: 'ID Transaksi', data: 'idTransaksi' },
-          { title: 'Nama Akun', data: 'namaNasabah' },
-          { title: 'Nomor Rekening', data: 'noRekening' },
-          { title: 'Jenis Transaksi', data: 'flag' },
-          { title: 'Waktu Transaksi', data: 'waktuTransaksi' }
-        ]
-      });
+      this.initializeDataTable(data);
     });
   }
 
@@ -71,16 +58,30 @@ export class ListTransactionComponent implements OnInit {
       return { ...item, idTransaksi: item.idTransaksi.toString(), no: data.indexOf(item) + 1 };
     });
 
-    $('#exampleTable').DataTable({
-      data: dataTableData,
-      columns: [
-        { title: 'No', data: 'no' }, // New column for row numbers
-        { title: 'ID Transaksi', data: 'idTransaksi' },
-        { title: 'Nama Akun', data: 'namaNasabah' },
-        { title: 'Nomor Rekening', data: 'noRekening' },
-        { title: 'Jenis Transaksi', data: 'flag' },
-        { title: 'Waktu Transaksi', data: 'waktuTransaksi | date:\'dd-MM-yyyy HH:mm:ss\'' }
-      ]
-    });
+    if ($.fn.DataTable.isDataTable('#exampleTable')) {
+      const table = $('#exampleTable').DataTable();
+      table.clear().rows.add(dataTableData).draw();
+    } else {
+      $('#exampleTable').DataTable({
+        data: dataTableData,
+        columns: [
+          { title: 'No', data: 'no' }, // New column for row numbers
+          { title: 'ID Transaksi', data: 'idTransaksi' },
+          { title: 'Nama Akun', data: 'namaNasabah' },
+          { title: 'Nomor Rekening', data: 'noRekening' },
+          { title: 'Jenis Transaksi', data: 'flag' },
+          // { title: 'Waktu Transaksi', data: 'waktuTransaksi' }
+          { 
+            title: 'Waktu Transaksi', 
+            data: 'waktuTransaksi',
+            render: function(data: string) {
+              const date = new Date(data);
+              const formattedDate = `${(date.getDate() < 10 ? '0' : '') + date.getDate()}-${((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1)}-${date.getFullYear()} ${(date.getHours() < 10 ? '0' : '') + date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}:${(date.getSeconds() < 10 ? '0' : '') + date.getSeconds()}`;
+              return formattedDate;
+            }
+          }
+        ]
+      });
+    }
   }
 }

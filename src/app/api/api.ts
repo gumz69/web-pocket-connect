@@ -11,3 +11,4 @@ export const transaksiListDashboardEndpoint = `${API_URL}/transaksi/dashboard`;
 export const transaksiListByDayDashboardEndpoint = `${API_URL}/transaksi/dashboard-day`;
 export const transaksiListByWeekDashboardEndpoint = `${API_URL}/transaksi/dashboard-week`;
 export const transaksiListByMonthDashboardEndpoint = `${API_URL}/transaksi/dashboard-month`;
+export const loginEndpoint = `${API_URL}/login`;
