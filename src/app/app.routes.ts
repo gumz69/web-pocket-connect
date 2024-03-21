@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { loginGuard } from './login/login.guard';
 
 export const routes: Routes = [
   {
@@ -9,7 +10,10 @@ export const routes: Routes = [
   {
     path: 'categories',
     loadChildren: () =>
-      import('./categories/categories.module').then((value) => value.CategoriesModule),
+      import('./categories/categories.module').then(
+        (value) => value.CategoriesModule
+      ),
+    canActivate: [loginGuard],
   },
   {
     path: 'pocket',
@@ -19,21 +23,27 @@ export const routes: Routes = [
   {
     path: 'pocket-detail',
     loadChildren: () =>
-      import('./detail-pocket/detail-pocket.module').then((value) => value.DetailPocketModule),
+      import('./detail-pocket/detail-pocket.module').then(
+        (value) => value.DetailPocketModule
+      ),
   },
   {
     path: 'transaction',
     loadChildren: () =>
-      import('./transactions/transactions.module').then((value) => value.TransactionModule),
+      import('./transactions/transactions.module').then(
+        (value) => value.TransactionModule
+      ),
   },
   {
     path: 'transaction-list',
     loadChildren: () =>
-      import('./list-transaction/list-transaction.module').then((value) => value.ListTransactionModule),
+      import('./list-transaction/list-transaction.module').then(
+        (value) => value.ListTransactionModule
+      ),
   },
   {
     path: 'user',
     loadChildren: () =>
       import('./user/user.module').then((value) => value.UserModule),
-  }
+  },
 ];
