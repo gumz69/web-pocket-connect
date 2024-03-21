@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { transaction } from '../transactions/transactions';
 import { TransactionsService } from '../transactions/transactions.service';
+import { formatDate } from '../helper/date.helper';
 declare var $: any;
 
 @Component({
@@ -70,15 +71,10 @@ export class ListTransactionComponent implements OnInit {
           { title: 'Nama Akun', data: 'namaNasabah' },
           { title: 'Nomor Rekening', data: 'noRekening' },
           { title: 'Jenis Transaksi', data: 'flag' },
-          // { title: 'Waktu Transaksi', data: 'waktuTransaksi' }
-          { 
-            title: 'Waktu Transaksi', 
+          {
+            title: 'Waktu Transaksi',
             data: 'waktuTransaksi',
-            render: function(data: string) {
-              const date = new Date(data);
-              const formattedDate = `${(date.getDate() < 10 ? '0' : '') + date.getDate()}-${((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1)}-${date.getFullYear()} ${(date.getHours() < 10 ? '0' : '') + date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}:${(date.getSeconds() < 10 ? '0' : '') + date.getSeconds()}`;
-              return formattedDate;
-            }
+            render: formatDate
           }
         ]
       });
