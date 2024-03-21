@@ -35,16 +35,4 @@ export class CategoriesService {
     })
   }
 
-  getTopPocket(): Observable<Array<CategoryPocket>> {
-    return new Observable(observer => {
-      this.httpClient
-        .get<getCategoryPocketResponse>(`${topPocketEndpoint}`)
-        .subscribe(response => {
-          console.log({response});
-          observer.next(response.data);
-          observer.complete();
-        })
-    })
-  }
-
 }

@@ -16,12 +16,12 @@ export class CategoriesComponent implements OnInit {
   pocketTypes: string[] = [];
   counts: number[] = [];
   pocketCategories: CategoryPocket[] = [];
+  pocketCategoriesTabungan: CategoryPocket[] = [];
+  pocketCategoriesPengeluaran: CategoryPocket[] = [];
   tabunganCategories: string[] = [];
   tabunganCounts: number[] = [];
   pengeluaranCategories: string[] = [];
   pengeluaranCounts: number[] = [];
-  topPocketTabungan: CategoryPocket[] = [];
-  topPocketPengeluaran: CategoryPocket[] = [];
 
   constructor(private services: CategoriesService) {}
 
@@ -38,8 +38,6 @@ export class CategoriesComponent implements OnInit {
       this.pocketTypes = data.map((item) => item.pocketType);
       this.counts = data.map((item) => item.count);
 
-      console.log('Data:', this.pocketCounts);
-
       this.createPieChart();
     });
 
@@ -48,12 +46,12 @@ export class CategoriesComponent implements OnInit {
     this.services
       .getCategoryPocket(tipeTabungan)
       .subscribe((responseTabungan) => {
-        this.pocketCategories.push(...responseTabungan);
+        // this.pocketCategories.push(...responseTabungan);
+        this.pocketCategoriesTabungan = responseTabungan.sort((a, b) => b.count - a.count);
         this.tabunganCategories = responseTabungan.map(
           (item) => item.pocketName
         );
         this.tabunganCounts = responseTabungan.map((item) => item.count);
-        console.log('Kategori Tabungan: ', this.pocketCategories);
 
         this.createChartPocketTabungan();
       });
@@ -61,27 +59,15 @@ export class CategoriesComponent implements OnInit {
     this.services
       .getCategoryPocket(tipePengeluaran)
       .subscribe((responsePengeluaran) => {
-        this.pocketCategories.push(...responsePengeluaran);
+        // this.pocketCategories.push(...responsePengeluaran);
+        this.pocketCategoriesPengeluaran = responsePengeluaran.sort((a, b) => b.count - a.count);
         this.pengeluaranCategories = responsePengeluaran.map(
           (item) => item.pocketName
         );
         this.pengeluaranCounts = responsePengeluaran.map((item) => item.count);
-        console.log('Kategori Pengeluaran: ', this.pocketCategories);
 
         this.createChartPocketPengeluaran();
       });
-
-    this.services.getTopPocket().subscribe((data) => {
-      this.topPocketTabungan = data.filter(
-        (item) => item.pocketType === 'Pocket Tabungan'
-      );
-      this.topPocketPengeluaran = data.filter(
-        (item) => item.pocketType === 'Pocket Pengeluaran'
-      );
-
-      console.log('Top Pocket Tabungan: ', this.topPocketTabungan);
-      console.log('Top Pocket Pengeluaran: ', this.topPocketPengeluaran);
-    });
   }
 
   createPieChart(): void {

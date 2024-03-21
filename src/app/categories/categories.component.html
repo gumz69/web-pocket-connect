@@ -85,7 +85,7 @@
           Pocket Tabungan Terbanyak
         </h5>
 
-        <div *ngFor="let item of topPocketTabungan; let i = index">
+        <div *ngFor="let item of pocketCategoriesTabungan.slice(0, 3); let i = index">
           <p class="font-semibold align-top text-lg">
             {{ i + 1 }}. {{ item.pocketName }}
           </p>
@@ -137,7 +137,7 @@
           Pocket Pengeluaran Terbanyak
         </h5>
 
-        <div *ngFor="let item of topPocketPengeluaran; let i = index">
+        <div *ngFor="let item of pocketCategoriesPengeluaran.slice(0, 3); let i = index">
           <p class="font-semibold align-top text-lg">
             {{ i + 1 }}. {{ item.pocketName }}
           </p>

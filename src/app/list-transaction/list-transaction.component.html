@@ -13,17 +13,21 @@
         Transaksi Terakhir
       </h5>
       <div class="flex flex-row pb-4">
-        <mark class="px-2 text-black font-semibold bg-gray-400 p-1 rounded"
-          >Semua</mark
+        <button class="px-4 ml-2 p-1 rounded"
+        [ngClass]="selectedFilter === 'all' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
+        (click)="getListTransaction()">Semua</button
         >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Hari Ini</mark
+        <button class="px-4 ml-2 p-1 rounded"
+        [ngClass]="selectedFilter === 'day' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
+        (click)="filteredByDay()"  >Hari Ini</button
         >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Minggu Ini</mark
+        <button class="px-4 ml-2 p-1 rounded"
+        [ngClass]="selectedFilter === 'week' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
+        (click)="filteredByWeek()"  >Minggu Ini</button
         >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Bulan Ini</mark
+        <button class="px-4 ml-2 p-1 rounded"
+        [ngClass]="selectedFilter === 'month' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
+        (click)="filteredByMonth()"  >Bulan Ini</button
         >
       </div>
       <table id="exampleTable" class="display" style="width: 100%">
@@ -38,32 +42,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="border px-4 py-2">1. </td>
-            <td class="border px-4 py-2">8840</td>
-            <td class="border px-4 py-2">Rose</td>
-            <td class="border px-4 py-2">99485783</td>
-            <td class="border px-4 py-2">Debit</td>
-            <td class="border px-4 py-2">2024/03/20</td>
+          <tr *ngFor="let item of listTransaksi; let i = index">
+            <td class="border px-4 py-2">{{ i + 1}}</td>
+            <td class="border px-4 py-2">{{item.idTransaksi}}</td>
+            <td class="border px-4 py-2">{{item.namaNasabah}}</td>
+            <td class="border px-4 py-2">{{item.noRekening}}</td>
+            <td class="border px-4 py-2">{{item.flag}}</td>
+            <td class="border px-4 py-2">{{item.waktuTransaksi | date:'dd-MM-yyyy HH:mm:ss'}}</td>
           </tr>
-          <tr>
-            <td class="border px-4 py-2">2. </td>
-            <td class="border px-4 py-2">8840</td>
-            <td class="border px-4 py-2">Nita</td>
-            <td class="border px-4 py-2">99485783</td>
-            <td class="border px-4 py-2">Kredit</td>
-            <td class="border px-4 py-2">2024/03/20</td>
-          </tr>
-          <tr>
-            <td class="border px-4 py-2">3. </td>
-            <td class="border px-4 py-2">8840</td>
-            <td class="border px-4 py-2">Iko</td>
-            <td class="border px-4 py-2">99485783</td>
-            <td class="border px-4 py-2">Debit</td>
-            <td class="border px-4 py-2">2024/03/20</td>
-          </tr>
-
-          <!-- Add more rows as needed -->
         </tbody>
       </table>
     </div>

@@ -33,18 +33,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr *ngFor="let item of topListTransaksi; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           <th
             scope="row"
             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
           >
-            1.
+            {{i + 1}}
           </th>
-          <td class="px-6 py-4">09548</td>
-          <td class="px-6 py-4">Winston</td>
-          <td class="px-6 py-4">02475438</td>
-          <td class="px-6 py-4">Debit</td>
-          <td class="px-6 py-4">20-04-2024 22:00:00</td>
+          <td class="px-6 py-4">{{item.idTransaksi}}</td>
+          <td class="px-6 py-4">{{item.namaNasabah}}</td>
+          <td class="px-6 py-4">{{item.noRekening}}</td>
+          <td class="px-6 py-4">{{item.flag}}</td>
+          <td class="px-6 py-4">{{item.waktuTransaksi | date:'dd-MM-yyyy HH:mm:ss'}}</td>
         </tr>
       </tbody>
     </table>

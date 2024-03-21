@@ -30,22 +30,32 @@ export class GrafikComponent implements OnInit {
   }
 
   createChartTransaction(): void {
+    const getMonthName = (monthNumber: number): string => {
+      const monthNames = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+      ];
+      return monthNames[monthNumber - 1];
+    };
+
     new Chart('barChartTransaction', {
       type: 'bar',
       data: {
-        labels: this.transactionDebit.map((item) => item.bulanTransaksi),
+        labels: this.transactionDebit.map((item) => `${getMonthName(Number(item.bulanTransaksi))} ${item.tahunTransaksi}`),
         datasets: [
           {
             label: 'Pendapatan',
             data: this.transactionDebit.map((item) => item.nominalTransaksi),
             backgroundColor: ['rgba(38, 168, 137, 1)'],
-            borderWidth: 1,
+            // borderWidth: 1,
+            barThickness: 60,
           },
           {
             label: 'Pengeluaran',
             data: this.transactionKredit.map((item) => item.nominalTransaksi),
             backgroundColor: ['rgba(231, 26, 26, 1)'],
-            borderWidth: 1,
+            // borderWidth: 1,
+            barThickness: 60,
           },
         ],
       },
@@ -53,9 +63,21 @@ export class GrafikComponent implements OnInit {
         plugins: {
           legend: {
             position: 'bottom', // Adjust legend position as needed
-            align: 'center',
+            labels: {
+              font: {
+                size: 20,
+              },
+            }
           },
         },
+        layout: {
+          padding: {
+            left: 10,
+            right: 10,
+            top: 10,
+            bottom: 10
+          }
+      }
       },
     });
   }
