@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       password: this.password ?? '',
     };
 
-    this.authService.login(loginData).subscribe({
+    this.authService.auth(loginData).subscribe({
       next: (data) => {
         console.log('Login berhasil', data);
         localStorage.setItem('token', data.data)
