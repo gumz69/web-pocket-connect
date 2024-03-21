@@ -4,22 +4,21 @@ import { HttpClientModule } from "@angular/common/http";
 import { RoutingModule } from "./routing.module";
 import { PocketsComponent } from "./pockets.component";
 import { RouterLink } from "@angular/router";
-import { GrafikModule } from "./grafik/grafik.module";
-import { TableModule } from "./table/table.module";
 import { NavbarComponent } from "../components/navbar/navbar.component";
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
+import { GrafikComponent } from "./grafik/grafik.component";
+import { TableComponent } from "./table/table.component";
+import { DetailPocketComponent } from "./detail-pocket/detail-pocket.component";
 
 @NgModule({
   declarations: [
-    PocketsComponent,
+    PocketsComponent, GrafikComponent, TableComponent, DetailPocketComponent
   ],
   imports: [
     CommonModule,
     RoutingModule,
     HttpClientModule,
     RouterLink,
-    GrafikModule,
-    TableModule,
     SidebarComponent,
     NavbarComponent
   ],

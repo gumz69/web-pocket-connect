@@ -21,24 +21,10 @@ export const routes: Routes = [
       import('./pockets/pockets.module').then((value) => value.PocketsModule),
   },
   {
-    path: 'pocket-detail',
-    loadChildren: () =>
-      import('./detail-pocket/detail-pocket.module').then(
-        (value) => value.DetailPocketModule
-      ),
-  },
-  {
     path: 'transaction',
     loadChildren: () =>
       import('./transactions/transactions.module').then(
         (value) => value.TransactionModule
-      ),
-  },
-  {
-    path: 'transaction-list',
-    loadChildren: () =>
-      import('./list-transaction/list-transaction.module').then(
-        (value) => value.ListTransactionModule
       ),
   },
   {

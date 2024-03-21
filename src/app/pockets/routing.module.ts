@@ -1,18 +1,18 @@
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { PocketsComponent } from "./pockets.component";
-import { LoginComponent } from "../login/login.component";
+import { DetailPocketComponent } from "./detail-pocket/detail-pocket.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
-    pathMatch: 'full',
+    component: PocketsComponent,
   },
   {
-    path: '',
-    component: PocketsComponent,
-  }
+    path: 'detail',
+    component: DetailPocketComponent,
+  },
+
 ];
 
 @NgModule({

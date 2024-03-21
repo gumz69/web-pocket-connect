@@ -8,10 +8,9 @@ import { LoginData, LoginResponse } from './login';
   providedIn: 'root',
 })
 export class LoginService {
-  private isAuthenticated: boolean = false;
   constructor(private httpClient: HttpClient) {}
 
-  login(data: LoginData): Observable<LoginResponse> {
+  auth(data: LoginData): Observable<LoginResponse> {
     return this.httpClient.post<LoginResponse>(`${loginEndpoint}`, data);
   }
 
