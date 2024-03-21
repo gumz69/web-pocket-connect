@@ -16,7 +16,6 @@ export class TransactionsService {
       this.httpClient
         .get<GetTransactionChartResponse>(`${grafikTransactionEndpoint}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })
@@ -28,7 +27,6 @@ export class TransactionsService {
       this.httpClient
         .get<GetListTransactionResponse>(`${topTransaksiDashboardEndpoint}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })
