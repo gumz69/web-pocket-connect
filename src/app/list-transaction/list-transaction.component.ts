@@ -21,9 +21,10 @@ export class ListTransactionComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   ngOnInit(): void {
+    initFlowbite();
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
+      pageLength: 10
     };
     this.getListTransaction();
 
