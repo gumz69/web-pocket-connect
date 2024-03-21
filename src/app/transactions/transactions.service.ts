@@ -28,7 +28,7 @@ export class TransactionsService {
       this.httpClient
         .get<GetListTransactionResponse>(`${topTransaksiDashboardEndpoint}`)
         .subscribe(response => {
-          console.log({response});
+          // console.log({response});
           observer.next(response.data);
           observer.complete();
         })

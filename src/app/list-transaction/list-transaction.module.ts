@@ -4,6 +4,7 @@ import { ListTransactionComponent } from './list-transaction.component';
 import { RoutingModule } from './routing.module';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [ListTransactionComponent],
@@ -11,7 +12,8 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
     CommonModule,
     RoutingModule,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    DataTablesModule
   ],
 })
 export class ListTransactionModule { }

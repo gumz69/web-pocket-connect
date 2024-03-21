@@ -10,7 +10,7 @@ export interface transaction {
   namaNasabah: string;
   noRekening: string;
   flag: string;
-  waktuTransaksi: Date;
+  waktuTransaksi: string;
 }
 
 export interface GetTransactionChartResponse {
