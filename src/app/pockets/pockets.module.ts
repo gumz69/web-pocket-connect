@@ -9,6 +9,7 @@ import { SidebarComponent } from "../components/sidebar/sidebar.component";
 import { GrafikComponent } from "./grafik/grafik.component";
 import { TableComponent } from "./table/table.component";
 import { DetailPocketComponent } from "./detail-pocket/detail-pocket.component";
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DetailPocketComponent } from "./detail-pocket/detail-pocket.component";
     HttpClientModule,
     RouterLink,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    DataTablesModule
   ],
 })
 export class PocketsModule { }

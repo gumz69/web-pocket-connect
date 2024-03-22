@@ -21,7 +21,7 @@
           >Pocket Pengeluaran</mark
         >
       </div>
-      <table id="exampleTable" class="display" style="width: 100%">
+      <table datatable *ngIf="listPockets.length" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger.asObservable() | async" class="display" style="width: 100%">
         <thead>
           <tr>
             <th class="px-4 py-2">No</th>
@@ -33,30 +33,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="border px-4 py-2">1. </td>
-            <td class="border px-4 py-2">Tabungan</td>
-            <td class="border px-4 py-2">Pocket Tabungan</td>
-            <td class="border px-4 py-2">-</td>
-            <td class="border px-4 py-2">Iko</td>
-            <td class="border px-4 py-2">2024/03/20</td>
+          <tr *ngFor="let item of listPockets;  let i = index">
+            <td class="border px-4 py-2">{{ i + 1}}. </td>
+            <td class="px-4 py-2">{{item.tipe}}</td>
+            <td class="px-4 py-2">{{item.nama}}</td>
+            <td class="px-4 py-2">{{item.deskripsi}}</td>
+            <td class="px-4 py-2">{{item.namaPembuat}}</td>
+            <td class="px-4 py-2">{{item.tanggalDibuat}}</td>
           </tr>
-          <tr>
-            <td class="border px-4 py-2">2. </td>
-            <td class="border px-4 py-2">Liburan</td>
-            <td class="border px-4 py-2">Pocket Tabungan</td>
-            <td class="border px-4 py-2">-</td>
-            <td class="border px-4 py-2">Gumilar</td>
-            <td class="border px-4 py-2">2024/03/20</td>
-          </tr>
-          <tr>
-            <td class="border px-4 py-2">2. </td>
-            <td class="border px-4 py-2">Transportasi</td>
-            <td class="border px-4 py-2">Pocket Pengeluaran</td>
-            <td class="border px-4 py-2">-</td>
-            <td class="border px-4 py-2">Ela</td>
-            <td class="border px-4 py-2">2024/03/20</td>
-          </tr>
+
           <!-- Add more rows as needed -->
         </tbody>
       </table>

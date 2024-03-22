@@ -30,8 +30,31 @@
         (click)="filteredByMonth()"  >Bulan Ini</button
         >
       </div>
-      <table id="exampleTable" class="display" style="width: 100%">
+      <!-- <table id="exampleTable" class="display" style="width: 100%">
+      </table> -->
+      <table datatable *ngIf="listTransaksi.length" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger.asObservable() | async">
+        <thead>
+          <tr>
+
+            <th scope="col" class="px-6 py-3">ID Transaksi</th>
+            <th scope="col" class="px-6 py-3">Nama Akun</th>
+            <th scope="col" class="px-6 py-3">Nomor Rekening</th>
+            <th scope="col" class="px-6 py-3">Jenis Transaksi</th>
+            <th scope="col" class="px-6 py-3">Waktu Transaksi</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of listTransaksi">
+          <td class="px-6 py-4">{{item.idTransaksi}}</td>
+          <td class="px-6 py-4">{{item.namaNasabah}}</td>
+          <td class="px-6 py-4">{{item.noRekening}}</td>
+          <td class="px-6 py-4">{{item.flag}}</td>
+          <td class="px-6 py-4">{{item.waktuTransaksi | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+            </tr>
+        </tbody>
       </table>
+      <!-- <div *ngIf="!tableData">Loading transactions...</div> -->
     </div>
   </div>
 </div>

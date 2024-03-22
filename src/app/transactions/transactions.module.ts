@@ -9,6 +9,7 @@ import { TransactionsComponent } from "./transactions.component";
 import { ListTransactionComponent } from "./list-transaction/list-transaction.component";
 import { GrafikComponent } from "./grafik/grafik.component";
 import { TableComponent } from "./table/table.component";
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TableComponent } from "./table/table.component";
     HttpClientModule,
     RouterLink,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    DataTablesModule
   ],
 })
 export class TransactionModule { }
