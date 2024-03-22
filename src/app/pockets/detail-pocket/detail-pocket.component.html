@@ -11,14 +11,17 @@
         Daftar Pocket
       </h5>
       <div class="flex flex-row pb-4">
-        <mark class="px-2 text-black font-semibold bg-gray-400 p-1 rounded"
-          >Semua</mark
+        <button class="px-4 ml-2 p-1 rounded"
+        [ngClass]="selectedFilter === 'all' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
+        (click)="fetchListPocket()">Semua</button
         >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Pocket Tabungan</mark
+        <button class="px-4 ml-2 p-1 rounded"
+        [ngClass]="selectedFilter === 'tabungan' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
+        (click)="filteredByTabungan()"  >Pocket Tabungan</button
         >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Pocket Pengeluaran</mark
+        <button class="px-4 ml-2 p-1 rounded"
+        [ngClass]="selectedFilter === 'pengeluaran' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
+        (click)="filteredByPengeluaran()"  >Pocket Pengeluaran</button
         >
       </div>
       <table datatable *ngIf="listPockets.length" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger.asObservable() | async" class="display" style="width: 100%">
@@ -35,11 +38,11 @@
         <tbody>
           <tr *ngFor="let item of listPockets;  let i = index">
             <td class="border px-4 py-2">{{ i + 1}}. </td>
-            <td class="px-4 py-2">{{item.tipe}}</td>
-            <td class="px-4 py-2">{{item.nama}}</td>
-            <td class="px-4 py-2">{{item.deskripsi}}</td>
-            <td class="px-4 py-2">{{item.namaPembuat}}</td>
-            <td class="px-4 py-2">{{item.tanggalDibuat}}</td>
+            <td class="border px-4 py-2">{{item.tipe}}</td>
+            <td class="border px-4 py-2">{{item.nama}}</td>
+            <td class="border px-4 py-2">{{item.deskripsi}}</td>
+            <td class="border px-4 py-2">{{item.namaPembuat}}</td>
+            <td class="border px-4 py-2">{{item.tanggalDibuat | date:'dd-MM-yyyy HH:mm:ss'}}</td>
           </tr>
 
           <!-- Add more rows as needed -->

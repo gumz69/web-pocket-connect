@@ -20,4 +20,26 @@ export class DetailPocketService {
         });
     });
   }
+
+  getListPocketByTabungan(): Observable<Array<pocket>> {
+    return new Observable((observer) => {
+      this.httpClient
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`)
+        .subscribe((response) => {
+          observer.next(response.data);
+          observer.complete();
+        });
+    });
+  }
+
+  getListPocketByPengeluaran(): Observable<Array<pocket>> {
+    return new Observable((observer) => {
+      this.httpClient
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`)
+        .subscribe((response) => {
+          observer.next(response.data);
+          observer.complete();
+        });
+    });
+  }
 }

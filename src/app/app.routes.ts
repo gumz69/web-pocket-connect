@@ -26,10 +26,12 @@ export const routes: Routes = [
       import('./transactions/transactions.module').then(
         (value) => value.TransactionModule
       ),
+    canActivate: [loginGuard],
   },
   {
     path: 'user',
     loadChildren: () =>
       import('./user/user.module').then((value) => value.UserModule),
+    canActivate: [loginGuard],
   },
 ];

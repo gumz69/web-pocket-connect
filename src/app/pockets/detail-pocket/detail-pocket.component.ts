@@ -33,4 +33,20 @@ export class DetailPocketComponent implements OnInit {
       this.dtTrigger.next(this.listPockets);
     });
   }
+
+  filteredByTabungan(): void {
+    this.selectedFilter = 'tabungan';
+    this.services.getListPocketByTabungan().subscribe((pockets: pocket[]) => {
+      this.listPockets = pockets;
+      this.dtTrigger.next(this.listPockets);
+    });
+  }
+
+  filteredByPengeluaran(): void {
+    this.selectedFilter = 'pengeluaran';
+    this.services.getListPocketByPengeluaran().subscribe((pockets: pocket[]) => {
+      this.listPockets = pockets;
+      this.dtTrigger.next(this.listPockets);
+    });
+  }
 }
