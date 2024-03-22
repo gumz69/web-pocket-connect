@@ -1,0 +1,138 @@
+<app-sidebar/>
+<div class="sm:ml-64">
+<app-navbar/>
+
+
+    <div class="pl-4 pr-4 pt-4">
+        <div class="block flex-1 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <div class="flex flex-row pb-5">
+                <div class="basis-10/12">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Pengguna
+                    </h5>
+                </div>  
+                <div class="basis-2/12">
+                    <button
+                        type="submit"
+                        class="w-full text-black bg-gray-400 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                        [routerLink]="['/user']"
+                    >
+                        Kembali
+                    </button>
+                </div>
+            </div>
+            <form #tambahUserForm="ngForm" (ngSubmit)="onTambahUser(tambahUserForm.value)">
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    Nama
+                </div>
+                <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="nama" id="nama" autocomplete="nama" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div>
+            </div>
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    User Id
+                </div>
+                <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="userId" id="userId" autocomplete="userId" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div>
+            </div>
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    Nomor Rekening
+                </div>
+                <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="noRekening" id="noRekening" autocomplete="noRekening" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div>
+            </div>
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    Nomor Telepon
+                </div>
+                <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="telepon" id="telepon" autocomplete="telepon" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div>
+            </div>
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    Jenis Kelamin
+                </div>
+                <!-- <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="jenisKelamin" id="jenisKelamin" autocomplete="jenisKelamin" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div> -->
+                <!-- <div class="w-40  rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <select name="jenisKelamin" id="jenisKelamin" class="font-medium ml-2 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                        <option value="" id="" name="" class="font-medium">Pilih jenis kelamin</option>
+                        <option value="Pria" id="Pria" name="Pria" class="font-medium" >Pria</option>
+                        <option value="Wanita" id="Pria" name="Wanita" class="font-medium" >Wanita</option>
+                    </select>
+                </div> -->
+                <div class="flex items-center space-x-4">
+                    <input type="radio" id="jenisKelamin" name="jenisKelamin" value="Pria" class="form-radio h-4 w-4 text-indigo-600">
+                    <label for="Pria" id="Pria" name="Pria" class="font-medium">Pria</label>
+                    <!-- <input type="radio" id="Wanita" name="jenisKelamin" value="Wanita" class="form-radio h-4 w-4 text-indigo-600">
+                    <label for="Wanita" id="Wanita" name="Wanita" class="font-medium">Wanita</label> -->
+                </div>
+                
+            </div>
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    Nama Ibu Kandung
+                </div>
+                <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="namaIbuKandung" id="namaIbuKandung" autocomplete="namaIbuKandung" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div>
+            </div>
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    Jenis Tabungan
+                </div>
+                <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="jenisTabungan" id="jenisTabungan" autocomplete="jenisTabungan" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div>
+            </div>
+            <div class="flex items-center mb-5">
+                <div class="w-1/4 font-bold text-base">
+                    MPIN
+                </div>
+                <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <input type="text" name="mpin" id="mpin" autocomplete="mpin" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                </div>
+            </div>
+            <div class="flex justify-end mb-5">
+                <div class="basis-2/12">
+                    <button
+                        type="button"
+                        class="w-full text-black bg-orange-400 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                        data-modal-target="popupTambahUser"
+                        data-modal-toggle="popupTambahUser"
+                    >
+                        Tambah Pengguna
+                    </button>
+                    <div id="popupTambahUser" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-md max-h-full">
+                            <div class="relative bg-gray-300 rounded-lg shadow dark:bg-gray-700">
+                                <div class="p-4 md:p-5 text-center">
+                                    <div class="mb-5 text-xs font-bold text-black dark:text-gray-400">APAKAH ANDA YAKIN UNTUK MENAMBAH PENGGUNA?</div>
+                                    <input 
+                                    data-modal-hide="popupTambahUser" 
+                                    type="submit" 
+                                    value="YA" 
+                                    [routerLink]="['/user']"
+                                    class="text-black font-bold bg-orange-400 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 rounded-lg text-xs inline-flex items-center px-5 py-2.5 text-center">
+                                        <!-- YA -->
+                                    <!-- </button> -->
+                                    <button data-modal-hide="popupTambahUser" type="button" class="py-2.5 px-5 ms-3 text-xs font-bold text-gray-900 focus:outline-none bg-gray-100 rounded-lg border border-gray-300 hover:bg-gray-500  focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                        TIDAK
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>      
+        </div>
+    </div>
+</div>
