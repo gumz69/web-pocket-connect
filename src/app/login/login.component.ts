@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { LoginService } from './login.service';
-import { LoginData } from '/Users/ikowirya/Documents/ODP-Project/Final-Project/pocket-connect/src/app/login/login';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { LoginData } from './login';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +16,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
   username?: string;
   password?: string;
+  errorMessage?: string;
 
   constructor(private router: Router, private authService: LoginService) {}
   ngOnInit(): void {
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
       },
       error: (error) => {
         console.error('Login gagal', error.message);
+        this.errorMessage = error.error.message;
       },
     });
   }
