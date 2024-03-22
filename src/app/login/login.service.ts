@@ -12,11 +12,17 @@ export class LoginService {
   constructor(private httpClient: HttpClient) {}
 
   auth(data: LoginData): Observable<LoginResponse> {
-    return this.httpClient.post<LoginResponse>(`${loginEndpoint}`, data).pipe(
-      catchError((error) => {
-        return throwError(error);
-      })
-    )
+    return new Observable((observer) => {
+      this.httpClient.post<LoginResponse>(`${loginEndpoint}`, data).subscribe({
+        next: (response) => {
+          observer.next(response);
+          observer.complete();
+        },
+        error: (error) => {
+          observer.error(error);
+        },
+      });
+    });
   }
 
   logout(): void {

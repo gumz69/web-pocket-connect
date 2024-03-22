@@ -41,4 +41,10 @@ export class LoginComponent implements OnInit {
       },
     });
   }
+
+  closeAndRedirect(): void {
+    this.errorMessage = ''; // Kosongkan pesan kesalahan
+    this.username = ''; // Reset nilai username
+    this.password = ''; // Reset nilai password
+  }
 }

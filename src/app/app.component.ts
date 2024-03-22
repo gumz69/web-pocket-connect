@@ -22,11 +22,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     initFlowbite();
-    this.services.getAuth().subscribe(
-      (data) => {
+    this.services.getAuth().subscribe({
+      next: (data) => {
         console.log("Data:", data); // This is the actual data from the response
       },
-      (error) => {
+      error: (error) => {
         // console.error("Error:", error); // Log the error response
         if (error.status === 401) {
           // Unauthorized error
@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
           localStorage.removeItem("token");
         }
       }
+    } 
     )
   }
 }
