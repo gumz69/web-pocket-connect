@@ -1,8 +1,6 @@
-
-
 <app-sidebar />
 <div class="sm:ml-64">
-  <app-navbar/>
+  <app-navbar />
   <div class="p-4">
     <div
       class="block flex-1 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -13,29 +11,61 @@
         Transaksi Terakhir
       </h5>
       <div class="flex flex-row pb-4">
-        <button class="px-4 ml-2 p-1 rounded"
-        [ngClass]="selectedFilter === 'all' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
-        (click)="getListTransaction()">Semua</button
+        <button
+          class="px-4 ml-2 p-1 rounded"
+          [ngClass]="
+            selectedFilter === 'all'
+              ? 'bg-gray-400 text-black font-semibold'
+              : 'text-gray-400 bg-white'
+          "
+          (click)="getListTransaction()"
         >
-        <button class="px-4 ml-2 p-1 rounded"
-        [ngClass]="selectedFilter === 'day' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
-        (click)="filteredByDay()"  >Hari Ini</button
+          Semua
+        </button>
+        <button
+          class="px-4 ml-2 p-1 rounded"
+          [ngClass]="
+            selectedFilter === 'day'
+              ? 'bg-gray-400 text-black font-semibold'
+              : 'text-gray-400 bg-white'
+          "
+          (click)="filteredByDay()"
         >
-        <button class="px-4 ml-2 p-1 rounded"
-        [ngClass]="selectedFilter === 'week' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
-        (click)="filteredByWeek()"  >Minggu Ini</button
+          Hari Ini
+        </button>
+        <button
+          class="px-4 ml-2 p-1 rounded"
+          [ngClass]="
+            selectedFilter === 'week'
+              ? 'bg-gray-400 text-black font-semibold'
+              : 'text-gray-400 bg-white'
+          "
+          (click)="filteredByWeek()"
         >
-        <button class="px-4 ml-2 p-1 rounded"
-        [ngClass]="selectedFilter === 'month' ? 'bg-gray-400 text-black font-semibold' : 'text-gray-400 bg-white' "
-        (click)="filteredByMonth()"  >Bulan Ini</button
+          Minggu Ini
+        </button>
+        <button
+          class="px-4 ml-2 p-1 rounded"
+          [ngClass]="
+            selectedFilter === 'month'
+              ? 'bg-gray-400 text-black font-semibold'
+              : 'text-gray-400 bg-white'
+          "
+          (click)="filteredByMonth()"
         >
+          Bulan Ini
+        </button>
       </div>
       <!-- <table id="exampleTable" class="display" style="width: 100%">
       </table> -->
-      <table datatable *ngIf="listTransaksi.length" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger.asObservable() | async">
+      <table
+        datatable
+        *ngIf="listTransaksi.length"
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger.asObservable() | async"
+      >
         <thead>
           <tr>
-
             <th scope="col" class="px-6 py-3">ID Transaksi</th>
             <th scope="col" class="px-6 py-3">Nama Akun</th>
             <th scope="col" class="px-6 py-3">Nomor Rekening</th>
@@ -46,19 +76,26 @@
 
         <tbody>
           <tr *ngFor="let item of listTransaksi">
-          <td class="px-6 py-4">{{item.idTransaksi}}</td>
-          <td class="px-6 py-4">{{item.namaNasabah}}</td>
-          <td class="px-6 py-4">{{item.noRekening}}</td>
-          <td class="px-6 py-4">{{item.flag}}</td>
-          <td class="px-6 py-4">{{item.waktuTransaksi | date:'dd-MM-yyyy HH:mm:ss'}}</td>
-            </tr>
+            <td class="px-6 py-4">{{ item.idTransaksi }}</td>
+            <td class="px-6 py-4">{{ item.namaNasabah }}</td>
+            <td class="px-6 py-4">{{ item.noRekening }}</td>
+            <td class="px-6 py-4">{{ item.flag }}</td>
+            <td class="px-6 py-4">
+              {{ item.waktuTransaksi | date : "dd-MM-yyyy HH:mm:ss" }}
+            </td>
+          </tr>
         </tbody>
       </table>
-      <!-- <div *ngIf="!tableData">Loading transactions...</div> -->
+      <div *ngIf="!listTransaksi.length" class="flex-1 flex">
+        <div class="flex flex-col flex-1 items-center">
+          <img
+            src="../../../assets/icon-empty.png"
+            style="width: 35em"
+            alt="empty records"
+          />
+          <div>Belum ada data transaksi</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-

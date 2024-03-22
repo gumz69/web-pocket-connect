@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
         console.log("Data:", data); // This is the actual data from the response
       },
       (error) => {
-        console.error("Error:", error); // Log the error response
+        // console.error("Error:", error); // Log the error response
         if (error.status === 401) {
           // Unauthorized error
           console.log("Unauthorized error");
