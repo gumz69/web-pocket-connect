@@ -5,6 +5,7 @@ import { UserComponent } from './user.component';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -13,9 +14,11 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
   imports: [
     CommonModule,
     RoutingModule,
-    RouterLink,
+    HttpClientModule,
+    SidebarComponent,
     NavbarComponent,
-    SidebarComponent
+    RouterLink,
+    
   ]
 })
 export class UserModule { }

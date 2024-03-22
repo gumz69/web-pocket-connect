@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { LoginService } from './login.service';
-import { LoginData } from '/Users/ikowirya/Documents/ODP-Project/Final-Project/pocket-connect/src/app/login/login';
+// import { LoginData } from '/Users/ikowirya/Documents/ODP-Project/Final-Project/pocket-connect/src/app/login/login';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { LoginData } from './login';
 
 @Component({
   selector: 'app-login',
