@@ -100,7 +100,6 @@ export class CategoriesComponent implements OnInit {
           },
         },
       });
-      console.log('Pie chart created');
     } else {
       console.error('Canvas element not found.');
     }
