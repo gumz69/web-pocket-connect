@@ -18,11 +18,11 @@ export class TambahUserComponent implements OnInit {
     initFlowbite();
   }
 
-  navigateToUserPage() {
-    this.router.navigate(['/user']);
-}
+  // navigateToUserPage() {
+  //   this.router.navigate(['/user']);
+  // }
 
-  onTambahUser(users:{
+  onTambahUser(tambahUser:{
     noRekening: string,
     userId: string,
     nama: string,
@@ -31,9 +31,10 @@ export class TambahUserComponent implements OnInit {
     jenisTabungan: string,
     jenisKelamin: string,
     namaIbuKandung: string
-  }){
-    console.log(users)
-    this.httpClient.post('http://localhost:8080/api/nasabah',users)
+  })
+  {
+    console.log(tambahUser)
+    this.httpClient.post('http://localhost:8080/api/nasabah',tambahUser)
     .subscribe((res)=>{
       console.log(res);
     })
