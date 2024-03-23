@@ -15,4 +15,5 @@ export const transaksiListByWeekDashboardEndpoint = `${API_URL}/transaksi/dashbo
 export const transaksiListByMonthDashboardEndpoint = `${API_URL}/transaksi/dashboard-month`;
 export const loginEndpoint = `${API_URL}/login`;
 export const authEndpoint = `${API_URL}/check/validate`;
-
+export const listUserEndPoint = `${API_URL}/nasabah/dashboard`;
+export const grafikPocketEndpoint = `${API_URL}/pocket/grafik`

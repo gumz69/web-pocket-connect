@@ -7,60 +7,38 @@
     <div
       class="block flex-1 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
     >
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
+    <div class="flex items-center justify-between mb-2">
+      <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         Nasabah
       </h5>
-      <div class="flex flex-row pb-4">
-        <mark class="px-2 text-black font-semibold bg-gray-400 p-1 rounded"
-          >Semua</mark
-        >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Hari Ini</mark
-        >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Minggu Ini</mark
-        >
-        <mark class="px-2 text-gray-400 ml-2 bg-white p-1 rounded"
-          >Bulan Ini</mark
-        >
-      </div>
+      <button
+        type="submit"
+        class="text-black bg-orange-400 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 ml-2"
+        [routerLink]="['./tambah-user']"
+      >
+        Tambah Pengguna
+      </button>
+    </div>
+      
       <table id="exampleTable" class="display" style="width: 100%">
         <thead>
           <tr>
             <th class="px-4 py-2">No</th>
-            <th class="px-4 py-2">ID Transaksi</th>
+            <th class="px-4 py-2">User</th>
             <th class="px-4 py-2">Nama Akun</th>
             <th class="px-4 py-2">Nomor Rekening</th>
             <th class="px-4 py-2">Jenis Transaksi</th>
-            <th class="px-4 py-2">Waktu Transaksi</th>
+            <th class="px-4 py-2">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="border px-4 py-2">1. </td>
-            <td class="border px-4 py-2">8840</td>
-            <td class="border px-4 py-2">Rose</td>
-            <td class="border px-4 py-2">99485783</td>
-            <td class="border px-4 py-2">Debit</td>
-            <td class="border px-4 py-2">2024/03/20</td>
-          </tr>
-          <tr>
-            <td class="border px-4 py-2">2. </td>
-            <td class="border px-4 py-2">8840</td>
-            <td class="border px-4 py-2">Nita</td>
-            <td class="border px-4 py-2">99485783</td>
-            <td class="border px-4 py-2">Kredit</td>
-            <td class="border px-4 py-2">2024/03/20</td>
-          </tr>
-          <tr>
-            <td class="border px-4 py-2">3. </td>
-            <td class="border px-4 py-2">8840</td>
-            <td class="border px-4 py-2">Iko</td>
-            <td class="border px-4 py-2">99485783</td>
-            <td class="border px-4 py-2">Debit</td>
-            <td class="border px-4 py-2">2024/03/20</td>
+          <tr *ngFor="let data of listUser; let i = index">
+            <td class="border px-4 py-2">{{ i + 1}}.</td>
+            <td class="border px-4 py-2">{{data.userId}}</td>
+            <td class="border px-4 py-2">{{data.namaNasabah}}</td>
+            <td class="border px-4 py-2">{{data.nomorRekening}}</td>
+            <td class="border px-4 py-2">{{data.jumlahPocket}}</td>
+            <td class="border px-4 py-2"></td>
           </tr>
 
           <!-- Add more rows as needed -->

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { PocketChart } from './grafik';
+import { GrafikService } from './grafik.service';
 Chart.register(...registerables);
 @Component({
   selector: 'app-grafik',
@@ -8,38 +10,39 @@ Chart.register(...registerables);
 })
 export class GrafikComponent implements OnInit {
 
-  chartdata: any;
+  chartdata: PocketChart[] = [];
   banyakPocket: any[] = [];
   bulanPocket: any[] = [];
 
+  constructor(private services: GrafikService) {}
+
   ngOnInit(): void {
-      // input code api get jumlah pocket
+    this.services.getPocketChart().subscribe((data) => {
+      this.chartdata = data.sort((a, b) => a.bulanPembuatan - b.bulanPembuatan);
+
       this.renderBarChart();
+    });
   }
 
   renderBarChart() {
+    const getMonthName = (monthNumber: number): string => {
+      const monthNames = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+      ];
+      return monthNames[monthNumber - 1];
+    };
+
     new Chart('barchart', {
       type: 'bar',
       data: {
-        labels: [
-          'Januari',
-          'Februari',
-          'Maret',
-          'April',
-          'Mei',
-          'Juni',
-          'Juli',
-          'Agustus',
-          'September',
-          'Oktober',
-          'November',
-          'Desember',
-        ],
+        labels: this.chartdata.map((item) => `${getMonthName(Number(item.bulanPembuatan))} ${item.tahunPembuatan}`),
         datasets: [
           {
             label: 'Jumlah Pocket',
-            data: [12, 19, 3, 5, 2, 3, 7, 8, 10, 15, 9, 20],
+            data: this.chartdata.map((item) => item.jumlahPocket),
             borderWidth: 0,
+            barThickness: 40,
           },
         ],
       },
@@ -48,7 +51,17 @@ export class GrafikComponent implements OnInit {
           y: {
             beginAtZero: true
           }
-        }
+        },
+        plugins: {
+          legend: {
+            position: 'bottom', // Adjust legend position as needed
+            labels: {
+              font: {
+                size: 16,
+              },
+            }
+          },
+        },
       },
     });
   }
