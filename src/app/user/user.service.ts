@@ -1,15 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetListUserResponse, ListUser } from './user';
-import { listUserEndPoint } from '../api/api';
+import { GetListUserDetailResponse, GetListUserResponse, ListDetailUser, ListUser } from './user';
+import { listUserDetailEndPoint, listUserEndPoint } from '../api/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  
-  constructor(private httpClient: HttpClient) { }
+  listUser: ListUser[] = [];
+  ListDetailUser: ListDetailUser[] = [];
+
+  constructor( 
+    private httpClient: HttpClient,
+    private userDetailClient: HttpClient,
+     ) { }
 
   getListUser(): Observable<Array<ListUser>>{
     return new Observable(observer=>{
@@ -21,4 +26,33 @@ export class UserService {
       })
     })
   }
+
+  getListUserDetail(): Observable<Array<ListDetailUser>>{
+    return new Observable(observer=>{
+      this.userDetailClient
+      .get<GetListUserDetailResponse>(`${listUserDetailEndPoint}`)
+      .subscribe(response=>{
+        observer.next(response.data);
+        observer.complete();
+      })
+    })
+  }
+  getUserDetail(id:string){
+    return this.httpClient.get(`http://localhost:8080/api/nasabah/${id}`)
+  }
+
+  // getAllNasabah() {
+  //   this.getListUser().subscribe(data => {
+  //     this.listUser = data;
+  //   });
+  // }
+
+  // // listUser: ListUser[] = [];
+  // onEditUser(id: string){
+  //   let dataNasabah = this.listUser.find((p)=> {return p.id === id});
+  //   console.log(dataNasabah)
+  //   // this.httpClient.put('http://localhost:8080/api/nasabah/' + id).subscribe();
+  // }
+
+  
 }

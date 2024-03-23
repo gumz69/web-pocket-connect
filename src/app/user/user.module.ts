@@ -8,12 +8,14 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TambahUserComponent } from './tambah-user/tambah-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
+
 
 
 
 @NgModule({
-  declarations: [UserComponent, TambahUserComponent, EditUserComponent, EditUserComponent],
+  declarations: [UserComponent, TambahUserComponent, EditUserComponent],
   imports: [
     CommonModule,
     RoutingModule,
@@ -21,7 +23,14 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     NavbarComponent,
     RouterLink,
-    FormsModule
+    FormsModule,
+    DataTablesModule,
+  ],
+  exports:[
+    UserComponent
   ]
 })
-export class UserModule { }
+
+export class UserModule {
+  
+}
