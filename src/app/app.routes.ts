@@ -19,6 +19,7 @@ export const routes: Routes = [
     path: 'pocket',
     loadChildren: () =>
       import('./pockets/pockets.module').then((value) => value.PocketsModule),
+    canActivate: [loginGuard],
   },
   {
     path: 'transaction',

@@ -15,8 +15,7 @@ export class TableComponent implements OnInit{
   ngOnInit(): void {
       this.services.getListTopTransaction().subscribe((data) => {
         this.topListTransaksi = data;
-        console.log('Data:', this.topListTransaksi);
       })
   }
-  
+
 }

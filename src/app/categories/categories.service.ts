@@ -1,5 +1,5 @@
 import { Injectable} from '@angular/core';
-import { categoryPocketEndpoint, topPocketEndpoint, typePocketEndpoint } from '../api/api';
+import { categoryPocketEndpoint, typePocketEndpoint } from '../api/api';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CategoryPocket, GetTypePocketResponse, TypePocket, getCategoryPocketResponse } from './categories';
@@ -16,7 +16,6 @@ export class CategoriesService {
       this.httpClient
         .get<GetTypePocketResponse>(`${typePocketEndpoint}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })
@@ -28,7 +27,6 @@ export class CategoriesService {
       this.httpClient
         .get<getCategoryPocketResponse>(`${categoryPocketEndpoint}?tipe=${tipe}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })

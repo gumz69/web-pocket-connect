@@ -38,7 +38,6 @@ export class TransactionsService {
       this.httpClient
         .get<GetListTransactionResponse>(`${transaksiListDashboardEndpoint}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })
@@ -50,7 +49,6 @@ export class TransactionsService {
       this.httpClient
         .get<GetListTransactionResponse>(`${transaksiListByDayDashboardEndpoint}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })
@@ -61,7 +59,6 @@ export class TransactionsService {
       this.httpClient
         .get<GetListTransactionResponse>(`${transaksiListByWeekDashboardEndpoint}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })
@@ -72,7 +69,6 @@ export class TransactionsService {
       this.httpClient
         .get<GetListTransactionResponse>(`${transaksiListByMonthDashboardEndpoint}`)
         .subscribe(response => {
-          console.log({response});
           observer.next(response.data);
           observer.complete();
         })
