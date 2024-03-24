@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GetListPocketResponse, pocket } from './detail-pocket';
@@ -9,11 +9,12 @@ import { listPocketEndpoint } from '../../api/api';
 })
 export class DetailPocketService {
   constructor(private httpClient: HttpClient) {}
-
+  token = localStorage.getItem('token');
+  headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getListPocket(): Observable<Array<pocket>> {
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}`)
+        .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -24,7 +25,7 @@ export class DetailPocketService {
   getListPocketByTabungan(): Observable<Array<pocket>> {
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`)
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -35,7 +36,7 @@ export class DetailPocketService {
   getListPocketByPengeluaran(): Observable<Array<pocket>> {
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`)
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

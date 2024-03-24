@@ -9,13 +9,12 @@ import { grafikPocketEndpoint } from '../../api/api';
 })
 export class GrafikService {
   constructor(private httpClient: HttpClient) {}
-
+  token = localStorage.getItem('token');
+  headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getPocketChart(): Observable<Array<PocketChart>> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetPocketChartResponse>(`${grafikPocketEndpoint}`, {headers})
+        .get<GetPocketChartResponse>(`${grafikPocketEndpoint}`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

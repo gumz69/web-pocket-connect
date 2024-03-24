@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetListTransactionResponse, GetTransactionChartResponse, transaction, transactionChart } from './transactions';
 import { Observable } from 'rxjs';
@@ -10,11 +10,12 @@ import { grafikTransactionEndpoint, topTransaksiDashboardEndpoint, transaksiList
 export class TransactionsService {
 
   constructor(private httpClient: HttpClient) { }
-
+  token = localStorage.getItem('token');
+  headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getGrafikTransaction(): Observable<Array<transactionChart>> {
     return new Observable(observer => {
       this.httpClient
-        .get<GetTransactionChartResponse>(`${grafikTransactionEndpoint}`)
+        .get<GetTransactionChartResponse>(`${grafikTransactionEndpoint}`, {headers: this.headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();
@@ -25,7 +26,7 @@ export class TransactionsService {
   getListTopTransaction(): Observable<Array<transaction>> {
     return new Observable(observer => {
       this.httpClient
-        .get<GetListTransactionResponse>(`${topTransaksiDashboardEndpoint}`)
+        .get<GetListTransactionResponse>(`${topTransaksiDashboardEndpoint}`, {headers: this.headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();
@@ -36,7 +37,7 @@ export class TransactionsService {
   getListTransaction(): Observable<Array<transaction>> {
     return new Observable(observer => {
       this.httpClient
-        .get<GetListTransactionResponse>(`${transaksiListDashboardEndpoint}`)
+        .get<GetListTransactionResponse>(`${transaksiListDashboardEndpoint}`, {headers: this.headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();
@@ -47,7 +48,7 @@ export class TransactionsService {
   getListTransactionByDay(): Observable<Array<transaction>> {
     return new Observable(observer => {
       this.httpClient
-        .get<GetListTransactionResponse>(`${transaksiListByDayDashboardEndpoint}`)
+        .get<GetListTransactionResponse>(`${transaksiListByDayDashboardEndpoint}`, {headers: this.headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();
@@ -57,7 +58,7 @@ export class TransactionsService {
   getListTransactionByWeek(): Observable<Array<transaction>> {
     return new Observable(observer => {
       this.httpClient
-        .get<GetListTransactionResponse>(`${transaksiListByWeekDashboardEndpoint}`)
+        .get<GetListTransactionResponse>(`${transaksiListByWeekDashboardEndpoint}`, {headers: this.headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();
@@ -67,7 +68,7 @@ export class TransactionsService {
   getListTransactionByMonth(): Observable<Array<transaction>> {
     return new Observable(observer => {
       this.httpClient
-        .get<GetListTransactionResponse>(`${transaksiListByMonthDashboardEndpoint}`)
+        .get<GetListTransactionResponse>(`${transaksiListByMonthDashboardEndpoint}`, {headers: this.headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();
