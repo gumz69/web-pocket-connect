@@ -9,6 +9,7 @@ import { TransactionsService } from '../transactions.service';
   templateUrl: './list-transaction.component.html',
   styleUrl: './list-transaction.component.css',
 })
+
 export class ListTransactionComponent implements OnInit {
   listTransaksi: transaction[] = [];
   selectedFilter: string = 'all';
@@ -27,6 +28,8 @@ export class ListTransactionComponent implements OnInit {
 
   getListTransaction(): void {
     this.selectedFilter = 'all';
+    this.listTransaksi = [];
+    this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransaction()
       .subscribe((transactions: transaction[]) => {
@@ -37,6 +40,8 @@ export class ListTransactionComponent implements OnInit {
 
   filteredByDay() {
     this.selectedFilter = 'day';
+    this.listTransaksi = [];
+    this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransactionByDay()
       .subscribe((transactions: transaction[]) => {
@@ -47,6 +52,8 @@ export class ListTransactionComponent implements OnInit {
 
   filteredByWeek() {
     this.selectedFilter = 'week';
+    this.listTransaksi = [];
+    this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransactionByWeek()
       .subscribe((transactions: transaction[]) => {
@@ -57,6 +64,8 @@ export class ListTransactionComponent implements OnInit {
 
   filteredByMonth() {
     this.selectedFilter = 'month';
+    this.listTransaksi = [];
+    this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransactionByMonth()
       .subscribe((transactions: transaction[]) => {
