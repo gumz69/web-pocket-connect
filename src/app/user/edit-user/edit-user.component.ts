@@ -1,4 +1,4 @@
-import { Component, OnInit, viewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, viewChild } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -13,15 +13,15 @@ import { User } from '../user';
     styleUrl: './edit-user.component.css',
 })
 export class EditUserComponent implements OnInit {
-    nasabah: User = {} as User;
-    errorMessage: string | undefined;
+    nasabah: any = null;
+    
+    id?: number;
 
     constructor(
-        private formBuilder: FormBuilder,
-        private httpClient: HttpClient,
         private router: Router,
         private route: ActivatedRoute,
-        private userService: UserService
+        private userService: UserService,
+        private cdr: ChangeDetectorRef
     ) { }
 
 
@@ -32,12 +32,23 @@ export class EditUserComponent implements OnInit {
     ngOnInit(): void {
     // initFlowbite();
 
-        const id = Number(this.route.snapshot.paramMap.get('id'))
-        console.log(id);
-        if (id) {
-            this.userService.getUserDetail(id).subscribe({
-            next: (data) => this.nasabah = data,
-            error: (error) => this.errorMessage = error.message
+        this.id = Number(this.route.snapshot.paramMap.get('id'))
+        console.log('ID:', this.id);
+        if (this.id) {
+            this.userService.getUserDetail(this.id).subscribe({
+            next: (data: User) => {
+                // console.log('Data Nasabah:', data);
+                this.nasabah = data
+                this.cdr.detectChanges();
+            },
+            error: (error) => {
+                // console.error("Error:", error); // Log the error response
+                if (error.status === 401) {
+                  // Unauthorized error
+                  console.log("Unauthorized error");
+                  localStorage.removeItem("token");
+                }
+              }
             });
         }
    
@@ -45,8 +56,13 @@ export class EditUserComponent implements OnInit {
 
     onUpdateUser() {
         this.userService.updateUser(this.nasabah).subscribe({
-            next: () => this.router.navigate(['/user']),
-            error: (error) => this.errorMessage = error.message
+            next: () => {
+                console.log('User updated successfully');
+                this.router.navigate(['/user']); // Redirect to user detail page after update
+              },
+              error: (error) => {
+                console.error("Error:", error);
+              }
           });
     }
 }

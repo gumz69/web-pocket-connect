@@ -1,4 +1,4 @@
-const API_URL = 'https://api.pocket-connect.xyz';
+const API_URL = 'https://api.pocket-connect.xyz/api';
 
 export const topTransaksiListEndpoint = `${API_URL}/kolaborasi`;
 export const typePocketEndpoint = `${API_URL}/pocket/tipe`;

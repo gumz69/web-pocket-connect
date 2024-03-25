@@ -29,12 +29,17 @@ export interface User{
     jenisKelamin: string,
     namaIbuKandung: string,
 }
+
 export interface GetListUserResponse{
     data: Array<ListUser>;
 }
 
 export interface GetListUserDetailResponse{
     data: Array<ListDetailUser>;
+}
+
+export interface GetUserDetailResponse{
+    data: ListDetailUser;
 }
 
 export interface CreateUserResponse{

@@ -11,14 +11,19 @@ import { ListDetailUser, User } from '../user';
   styleUrl: './tambah-user.component.css',
 })
 export class TambahUserComponent implements OnInit {
-  noRekening?: string;
-  userId?: string;
-  nama?: string;
-  mpin?: string;
-  telepon?: string;
-  jenisTabungan?: string;
-  jenisKelamin?: string;
-  namaIbuKandung?: string;
+  
+  user: User = {
+    id: '',
+    userId: '',
+    noRekening: '',
+    nama: '',
+    mpin: '',
+    telepon: '',
+    jenisTabungan: '',
+    jenisKelamin: '',
+    namaIbuKandung: '',
+  };
+  submitted = false;
   
   constructor(private router: Router, private serviceUser: UserService){}
 
@@ -26,48 +31,30 @@ export class TambahUserComponent implements OnInit {
     initFlowbite();
   }
 
-  // navigateToUserPage() {
-  //   this.router.navigate(['/user']);
-  // }
-
   onTambahUser() {
-    const dataUser: User = {
-      id: this.mpin ?? '',
-      noRekening: this.noRekening ?? '',
-      userId: this.userId ?? '',
-      nama: this.nama ?? '',
-      mpin: this.mpin ?? '',
-      telepon: this.telepon ?? '',
-      jenisTabungan: this.jenisTabungan ?? '',
-      jenisKelamin: this.jenisKelamin ?? '',
-      namaIbuKandung: this.namaIbuKandung ?? '',
-    };
-
-    this.serviceUser.createUser(dataUser).subscribe({
-      next: (data) => {
-        console.log('User Created', data);
+    this.submitted = true;
+    this.serviceUser.createUser(this.user).subscribe({
+      next: (data: User) => {
+        console.log('User created successfully!');
+        this.router.navigate(['/user']);
+        this.user = {
+          id: '',
+          userId: '',
+          noRekening: '',
+          nama: '',
+          mpin: '',
+          telepon: '',
+          jenisTabungan: '',
+          jenisKelamin: '',
+          namaIbuKandung: '',
+        };
+        this.submitted = false;
       },
       error: (error) => {
-        console.error('Failed to create user', error.message);
+        console.log('Error creating user!');
       }
-    })
+    }
+    );
   }
 
-  // onTambahUser(tambahUser:{
-  //   noRekening: string,
-  //   userId: string,
-  //   nama: string,
-  //   mpin: string,
-  //   telepon: string,
-  //   jenisTabungan: string,
-  //   jenisKelamin: string,
-  //   namaIbuKandung: string
-  // })
-  // {
-  //   console.log(tambahUser)
-  //   this.httpClient.post('http://localhost:8080/api/nasabah',tambahUser)
-  //   .subscribe((res)=>{
-  //     console.log(res);
-  //   })
-  // }
 }

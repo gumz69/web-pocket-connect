@@ -5,7 +5,6 @@ import { UserService } from './user.service';
 import { data } from 'jquery';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { UserModule } from './user.module';
 
 declare var $: any;
 
@@ -19,26 +18,32 @@ export class UserComponent implements OnInit {
   listDetailUser: ListDetailUser [] = [];
 
   constructor(
-    private serviceListUser: UserService,
-    private httpClient: HttpClient) { }
+    private serviceListUser: UserService
+    ) { }
     
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  gender = [
-    { id: 'Pria', value: 'Pria' },
-    { id: 'Wanita', value: 'Wanita' },
-  ]
-
   onDeleteUser(id: string) {
-    this.httpClient.delete('http://localhost:8080/api/nasabah/' + id).subscribe();
-    this.getAllNasabah();
+    this.serviceListUser.deleteUser(id).subscribe({
+      next: (response) => {
+        console.log('User deleted!');
+        this.getAllNasabah(); // Refresh the user list
+      },
+      error: (error) => {
+        console.error('Error deleting user!');
+      }
+    }
+    );
   }
 
  
   getAllNasabah() {
+    this.listUser = [];
+    this.dtTrigger.next(this.listUser);
     this.serviceListUser.getListUser().subscribe(data => {
       this.listUser = data;
+      this.dtTrigger.next(this.listUser);
     });
 
   }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateUserResponse, GetListUserDetailResponse, GetListUserResponse, ListDetailUser, ListUser, User } from './user';
+import { CreateUserResponse, GetListUserDetailResponse, GetListUserResponse, GetUserDetailResponse, ListDetailUser, ListUser, User } from './user';
 import { createUserEndPoint, listUserDetailEndPoint, listUserEndPoint } from '../api/api';
 
 @Injectable({
@@ -22,6 +22,7 @@ export class UserService {
       this.httpClient
       .get<GetListUserResponse>(`${listUserEndPoint}`, {headers})
       .subscribe((response) =>{
+        console.log('List Data:', response);
         observer.next(response.data);
         observer.complete();
       })
@@ -40,16 +41,16 @@ export class UserService {
       })
     })
   }
-  // return this.httpClient.get(`http://localhost:8080/api/nasabah/${id}`)
+ 
   getUserDetail(id:number) : Observable<User>{
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer=>{
       this.httpClient
-      .get<User>(`${listUserDetailEndPoint}/${id}`, {headers})
+      .get<GetUserDetailResponse>(`${listUserDetailEndPoint}/${id}`, {headers})
       .subscribe(response=>{
-        console.log('Data ID: ', id, 'Response:', response)
-        observer.next(response);
+        console.log('Data ID: ', id, 'Response:', response.data)
+        observer.next(response.data);
         observer.complete();
       })
     })
@@ -62,21 +63,20 @@ export class UserService {
       this.httpClient
       .put<User>(`${listUserDetailEndPoint}/${data.id}`, data, {headers})
       .subscribe(response=>{
-        console.log('Data ID: ', data.id, 'Response:', response)
         observer.next(response);
         observer.complete();
       })
     })
   }
 
-  createUser(data: User) : Observable<Array<CreateUserResponse[]>>{
+  createUser(data: User) : Observable<User>{
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
-      this.httpClient.post<any>(`${createUserEndPoint}`, data, {headers})
+      this.httpClient.post<GetUserDetailResponse>(`${createUserEndPoint}`, data, {headers})
         .subscribe({
           next: (response) => {
-            observer.next(response);
+            observer.next(response.data);
             observer.complete();
           },
           error: (error) => {
@@ -86,19 +86,23 @@ export class UserService {
     })
   }
 
-
-  // getAllNasabah() {
-  //   this.getListUser().subscribe(data => {
-  //     this.listUser = data;
-  //   });
-  // }
-
-  // // listUser: ListUser[] = [];
-  // onEditUser(id: string){
-  //   let dataNasabah = this.listUser.find((p)=> {return p.id === id});
-  //   console.log(dataNasabah)
-  //   // this.httpClient.put('http://localhost:8080/api/nasabah/' + id).subscribe();
-  // }
-
-  
+  deleteUser(id:string): Observable<any>{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    return new Observable(observer=>{
+      this.httpClient
+      .delete<any>(`${listUserDetailEndPoint}/${id}`, {headers})
+      .subscribe({
+        next: (response) =>{
+          console.log('User deleted successfully (ID:', id, ')');
+          observer.next(response);
+          observer.complete();
+        },
+        error: (error) => {
+          console.error('Error deleting user (ID:', id, ')');
+          observer.error(error);
+        }
+      })
+    })
+  }
 }
