@@ -56,6 +56,8 @@ export class TransactionsService {
     })
   }
   getListTransactionByWeek(): Observable<Array<transaction>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer => {
       this.httpClient
         .get<GetListTransactionResponse>(`${transaksiListByWeekDashboardEndpoint}`, {headers: this.headers})
@@ -66,6 +68,8 @@ export class TransactionsService {
     })
   }
   getListTransactionByMonth(): Observable<Array<transaction>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer => {
       this.httpClient
         .get<GetListTransactionResponse>(`${transaksiListByMonthDashboardEndpoint}`, {headers: this.headers})

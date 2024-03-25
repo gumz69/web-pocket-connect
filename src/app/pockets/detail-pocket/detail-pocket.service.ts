@@ -12,6 +12,8 @@ export class DetailPocketService {
   token = localStorage.getItem('token');
   headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getListPocket(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
         .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers: this.headers})
