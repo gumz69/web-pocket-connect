@@ -18,7 +18,7 @@
               ? 'bg-gray-400 text-black font-semibold'
               : 'text-gray-400 bg-white'
           "
-          (click)="updateFilter('all')"
+          (click)="getListTransaction()"
         >
           Semua
         </button>
@@ -29,7 +29,7 @@
               ? 'bg-gray-400 text-black font-semibold'
               : 'text-gray-400 bg-white'
           "
-          (click)="updateFilter('day')"
+          (click)="filteredByDay()"
         >
           Hari Ini
         </button>
@@ -40,7 +40,7 @@
               ? 'bg-gray-400 text-black font-semibold'
               : 'text-gray-400 bg-white'
           "
-          (click)="updateFilter('week')"
+          (click)="filteredByWeek()"
         >
           Minggu Ini
         </button>
@@ -51,7 +51,7 @@
               ? 'bg-gray-400 text-black font-semibold'
               : 'text-gray-400 bg-white'
           "
-          (click)="updateFilter('month')"
+          (click)="filteredByMonth()"
         >
           Bulan Ini
         </button>
