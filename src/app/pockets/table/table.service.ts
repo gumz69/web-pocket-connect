@@ -12,9 +12,15 @@ export class PocketService {
   token = localStorage.getItem('token');
   headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getListTopPocket(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
+<<<<<<< HEAD
         .get<GetListPocketResponse>(`${listTopPocketEndpoint}`, {headers: this.headers})
+=======
+        .get<GetListPocketResponse>(`${listTopPocketEndpoint}`, {headers})
+>>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

@@ -12,9 +12,15 @@ export class DetailPocketService {
   token = localStorage.getItem('token');
   headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getListPocket(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
+<<<<<<< HEAD
         .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers: this.headers})
+=======
+        .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers})
+>>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -23,9 +29,15 @@ export class DetailPocketService {
   }
 
   getListPocketByTabungan(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
+<<<<<<< HEAD
         .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers: this.headers})
+=======
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers})
+>>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -34,9 +46,15 @@ export class DetailPocketService {
   }
 
   getListPocketByPengeluaran(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
+<<<<<<< HEAD
         .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers: this.headers})
+=======
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers})
+>>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

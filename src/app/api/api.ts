@@ -1,4 +1,3 @@
-// const API_URL = 'https://cb71-202-169-41-187.ngrok-free.app/api';
 const API_URL = 'https://api.pocket-connect.xyz/api';
 
 export const topTransaksiListEndpoint = `${API_URL}/kolaborasi`;
@@ -15,6 +14,7 @@ export const transaksiListByWeekDashboardEndpoint = `${API_URL}/transaksi/dashbo
 export const transaksiListByMonthDashboardEndpoint = `${API_URL}/transaksi/dashboard-month`;
 export const loginEndpoint = `${API_URL}/login`;
 export const listUserDetailEndPoint =  `${API_URL}/nasabah`;
+export const createUserEndPoint =  `${API_URL}/nasabah`;
 export const listUserEndPoint = `${API_URL}/nasabah/dashboard`;
 export const authEndpoint = `${API_URL}/check/validate`;
 export const grafikPocketEndpoint = `${API_URL}/pocket/grafik`

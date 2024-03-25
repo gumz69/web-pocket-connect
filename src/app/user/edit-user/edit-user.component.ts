@@ -1,11 +1,10 @@
-import { Component, OnInit, viewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, viewChild } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { UserComponent } from '../user.component';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { ListDetailUser } from '../user';
+import { User } from '../user';
 
 
 @Component({
@@ -14,15 +13,15 @@ import { ListDetailUser } from '../user';
     styleUrl: './edit-user.component.css',
 })
 export class EditUserComponent implements OnInit {
-    usersId!: any;
-    user!: any;
-    listDetailUser: ListDetailUser[] = [];
+    nasabah: any = null;
+    
+    id?: number;
+
     constructor(
-        private formBuilder: FormBuilder,
-        private httpClient: HttpClient,
         private router: Router,
         private route: ActivatedRoute,
-        private detailUser: UserService
+        private userService: UserService,
+        private cdr: ChangeDetectorRef
     ) { }
 
 
@@ -31,7 +30,39 @@ export class EditUserComponent implements OnInit {
     }
 
     ngOnInit(): void {
-    initFlowbite();
+    // initFlowbite();
+
+        this.id = Number(this.route.snapshot.paramMap.get('id'))
+        console.log('ID:', this.id);
+        if (this.id) {
+            this.userService.getUserDetail(this.id).subscribe({
+            next: (data: User) => {
+                // console.log('Data Nasabah:', data);
+                this.nasabah = data
+                this.cdr.detectChanges();
+            },
+            error: (error) => {
+                // console.error("Error:", error); // Log the error response
+                if (error.status === 401) {
+                  // Unauthorized error
+                  console.log("Unauthorized error");
+                  localStorage.removeItem("token");
+                }
+              }
+            });
+        }
    
+    }
+
+    onUpdateUser() {
+        this.userService.updateUser(this.nasabah).subscribe({
+            next: () => {
+                console.log('User updated successfully');
+                this.router.navigate(['/user']); // Redirect to user detail page after update
+              },
+              error: (error) => {
+                console.error("Error:", error);
+              }
+          });
     }
 }

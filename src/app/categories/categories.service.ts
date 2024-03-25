@@ -13,9 +13,11 @@ export class CategoriesService {
   token = localStorage.getItem('token');
   headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getTypePocket(): Observable<Array<TypePocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer => {
       this.httpClient
-        .get<GetTypePocketResponse>(`${typePocketEndpoint}`, {headers: this.headers})
+        .get<GetTypePocketResponse>(`${typePocketEndpoint}`, {headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();
@@ -24,9 +26,11 @@ export class CategoriesService {
   }
 
   getCategoryPocket(tipe: string): Observable<Array<CategoryPocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer => {
       this.httpClient
-        .get<getCategoryPocketResponse>(`${categoryPocketEndpoint}?tipe=${tipe}`, {headers: this.headers})
+        .get<getCategoryPocketResponse>(`${categoryPocketEndpoint}?tipe=${tipe}`, {headers})
         .subscribe(response => {
           observer.next(response.data);
           observer.complete();

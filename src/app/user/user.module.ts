@@ -13,7 +13,6 @@ import { DataTablesModule } from 'angular-datatables';
 
 
 
-
 @NgModule({
   declarations: [UserComponent, TambahUserComponent, EditUserComponent],
   imports: [

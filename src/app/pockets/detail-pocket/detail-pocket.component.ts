@@ -28,6 +28,8 @@ export class DetailPocketComponent implements OnInit {
 
   fetchListPocket(): void {
     this.selectedFilter = 'all';
+    this.listPockets = [];
+    this.dtTrigger.next(this.listPockets);
     this.services.getListPocket().subscribe((pockets: pocket[]) => {
       this.listPockets = pockets;
       this.dtTrigger.next(this.listPockets);
@@ -36,6 +38,8 @@ export class DetailPocketComponent implements OnInit {
 
   filteredByTabungan(): void {
     this.selectedFilter = 'tabungan';
+    this.listPockets = [];
+    this.dtTrigger.next(this.listPockets);
     this.services.getListPocketByTabungan().subscribe((pockets: pocket[]) => {
       this.listPockets = pockets;
       this.dtTrigger.next(this.listPockets);
@@ -44,6 +48,8 @@ export class DetailPocketComponent implements OnInit {
 
   filteredByPengeluaran(): void {
     this.selectedFilter = 'pengeluaran';
+    this.listPockets = [];
+    this.dtTrigger.next(this.listPockets);
     this.services.getListPocketByPengeluaran().subscribe((pockets: pocket[]) => {
       this.listPockets = pockets;
       this.dtTrigger.next(this.listPockets);
