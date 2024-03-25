@@ -21,7 +21,7 @@
                     </button>
                 </div>
             </div>
-            <form #tambahUserForm="ngForm" (ngSubmit)="onTambahUser(tambahUserForm.value)">
+            <form #tambahUserForm="ngForm" (ngSubmit)="onTambahUser()">
             <div class="flex items-center mb-5">
                 <div class="w-1/4 font-bold text-base">
                     Nama
@@ -58,22 +58,21 @@
                 <div class="w-1/4 font-bold text-base">
                     Jenis Kelamin
                 </div>
-                <!-- <div class="w-3/4 ml-2 rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                    <input type="text" name="jenisKelamin" id="jenisKelamin" autocomplete="jenisKelamin" size="150" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
-                </div> -->
-                <div class="w-40  rounded-md ring-2 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                    <select name="jenisKelamin" id="jenisKelamin" class="font-medium ml-2 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
+                <div class="flex items-center space-x-4 focus-within:ring-inset focus-within:ring-indigo-600">
+                    <!-- <select name="jenisKelamin" id="jenisKelamin" class="font-medium ml-2 block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" ngModel>
                         <option value="" id="" name="" class="font-medium">Pilih jenis kelamin</option>
                         <option value="Pria" id="Pria" name="Pria" class="font-medium" >Pria</option>
                         <option value="Wanita" id="Pria" name="Wanita" class="font-medium" >Wanita</option>
-                    </select>
+                    </select> -->
+                    <div class="flex justify-between items-center py-1.5 pl-1 pr-4">
+                        <input type="radio" id="jenisKelaminPria" name="jenisKelamin" value="Pria" class="" ngModel>
+                        <label for="jenisKelaminPria" class="p-2 font-medium">Pria</label>
+                    </div>
+                    <div class="flex justify-between items-center py-1.5 pl-1 pr-4">
+                        <input type="radio" id="jenisKelaminWanita" name="jenisKelamin" value="Wanita" class="ml-2" ngModel>
+                        <label for="jenisKelaminWanita" class="p-2 font-medium">Wanita</label>
+                    </div>
                 </div>
-                <!-- <div class="flex items-center space-x-4">
-                    <input type="radio" id="jenisKelamin" name="jenisKelamin" value="Pria" class="form-radio h-4 w-4 text-indigo-600">
-                    <label for="Pria" id="Pria" name="Pria" class="font-medium">Pria</label>
-                    <input type="radio" id="Wanita" name="jenisKelamin" value="Wanita" class="form-radio h-4 w-4 text-indigo-600">
-                    <label for="Wanita" id="Wanita" name="Wanita" class="font-medium">Wanita</label>
-                </div> -->
                 
             </div>
             <div class="flex items-center mb-5">

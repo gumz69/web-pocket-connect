@@ -20,10 +20,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private serviceListUser: UserService,
-    private httpClient: HttpClient,
-    private editUser: UserService) { }
-
-
+    private httpClient: HttpClient) { }
     
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();

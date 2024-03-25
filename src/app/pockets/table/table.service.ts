@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { listTopPocketEndpoint } from '../../api/api';
@@ -11,9 +11,11 @@ export class PocketService {
   constructor(private httpClient: HttpClient) {}
 
   getListTopPocket(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listTopPocketEndpoint}`)
+        .get<GetListPocketResponse>(`${listTopPocketEndpoint}`, {headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

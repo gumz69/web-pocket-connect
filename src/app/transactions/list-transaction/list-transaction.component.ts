@@ -28,7 +28,7 @@ export class ListTransactionComponent implements OnInit {
   getListTransaction(): void {
     this.selectedFilter = 'all';
     this.services
-      .getListTopTransaction()
+      .getListTransaction()
       .subscribe((transactions: transaction[]) => {
         this.listTransaksi = transactions;
         this.dtTrigger.next(this.listTransaksi);

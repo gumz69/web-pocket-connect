@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GetListPocketResponse, pocket } from './detail-pocket';
@@ -11,9 +11,11 @@ export class DetailPocketService {
   constructor(private httpClient: HttpClient) {}
 
   getListPocket(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}`)
+        .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -22,9 +24,11 @@ export class DetailPocketService {
   }
 
   getListPocketByTabungan(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`)
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -33,9 +37,11 @@ export class DetailPocketService {
   }
 
   getListPocketByPengeluaran(): Observable<Array<pocket>> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`)
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
