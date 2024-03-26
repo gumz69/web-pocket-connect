@@ -6,6 +6,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { RoutingModule } from './routing.module';
 import { ThousandSeparatorPipe } from '../helper/thousand-separator.pipe';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -15,6 +16,7 @@ import { ThousandSeparatorPipe } from '../helper/thousand-separator.pipe';
     CommonModule,
     RoutingModule,
     HttpClientModule,
+    RouterLink,
     SidebarComponent,
     NavbarComponent,
     ThousandSeparatorPipe

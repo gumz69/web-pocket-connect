@@ -30,6 +30,6 @@ export class LoginService {
 
   getAuth(): boolean {
     const token = localStorage.getItem('token');
-    return !!token;
+    return !token?false:true;
   }
 }
