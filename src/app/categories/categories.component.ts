@@ -7,7 +7,6 @@ import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.css',
 })
 export class CategoriesComponent implements OnInit {
   pocketCounts: TypePocket[] = [];
@@ -46,20 +45,17 @@ export class CategoriesComponent implements OnInit {
     this.services
       .getCategoryPocket(tipeTabungan)
       .subscribe((responseTabungan) => {
-        // this.pocketCategories.push(...responseTabungan);
         this.pocketCategoriesTabungan = responseTabungan.sort((a, b) => b.count - a.count);
         this.tabunganCategories = responseTabungan.map(
           (item) => item.pocketName
         );
         this.tabunganCounts = responseTabungan.map((item) => item.count);
-
         this.createChartPocketTabungan();
       });
 
     this.services
       .getCategoryPocket(tipePengeluaran)
       .subscribe((responsePengeluaran) => {
-        // this.pocketCategories.push(...responsePengeluaran);
         this.pocketCategoriesPengeluaran = responsePengeluaran.sort((a, b) => b.count - a.count);
         this.pengeluaranCategories = responsePengeluaran.map(
           (item) => item.pocketName
@@ -109,12 +105,10 @@ export class CategoriesComponent implements OnInit {
     new Chart('piechartPocketTabungan', {
       type: 'pie',
       data: {
-        // labels: ['Rumah', 'Liburan', 'Pendidikan', 'Pensiun', 'Dana Darurat', 'Lainnya'],
         labels: this.tabunganCategories,
         datasets: [
           {
             label: 'Jumlah Pocket',
-            // data: [12, 19, 3, 5, 2, 3],
             data: this.tabunganCounts,
             backgroundColor: [
               'rgba(0, 95, 123, 1)',
@@ -139,7 +133,7 @@ export class CategoriesComponent implements OnInit {
       options: {
         plugins: {
           legend: {
-            position: 'bottom', // Adjust legend position as needed
+            position: 'bottom',
             align: 'start',
           },
         },
@@ -151,12 +145,10 @@ export class CategoriesComponent implements OnInit {
     new Chart('piechartPocketPengeluaran', {
       type: 'pie',
       data: {
-        // labels: ['Makanan & Minuman', 'Kebutuhan Rumah', 'Tagihan & Utilitas', 'Transport', 'Shopping', 'Lainnya'],
         labels: this.pengeluaranCategories,
         datasets: [
           {
             label: 'Jumlah Pocket',
-            // data: [12, 19, 3, 5, 2 , 3],
             data: this.pengeluaranCounts,
             backgroundColor: [
               'rgba(227, 96, 18, 1)',
@@ -181,7 +173,7 @@ export class CategoriesComponent implements OnInit {
       options: {
         plugins: {
           legend: {
-            position: 'bottom', // Adjust legend position as needed
+            position: 'bottom',
             align: 'start',
           },
         },

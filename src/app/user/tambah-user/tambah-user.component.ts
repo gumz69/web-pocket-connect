@@ -1,17 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { UserService } from '../user.service';
-import { ListDetailUser, User } from '../user';
+import { User } from '../user';
 
 @Component({
   selector: 'app-tambah-user',
   templateUrl: './tambah-user.component.html',
-  styleUrl: './tambah-user.component.css',
 })
 export class TambahUserComponent implements OnInit {
-  
   user: User = {
     id: '',
     userId: '',
@@ -24,8 +21,8 @@ export class TambahUserComponent implements OnInit {
     namaIbuKandung: '',
   };
   submitted = false;
-  
-  constructor(private router: Router, private serviceUser: UserService){}
+
+  constructor(private router: Router, private serviceUser: UserService) {}
 
   ngOnInit(): void {
     initFlowbite();
@@ -52,9 +49,7 @@ export class TambahUserComponent implements OnInit {
       },
       error: (error) => {
         console.log('Error creating user!');
-      }
-    }
-    );
+      },
+    });
   }
-
 }

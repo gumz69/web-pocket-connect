@@ -37,8 +37,6 @@ export class UserService {
   }
 
   getListUserDetail(): Observable<Array<ListDetailUser>>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer=>{
       this.httpClient
       .get<GetListUserDetailResponse>(`${listUserDetailEndPoint}`, {headers: this.headers})
@@ -73,8 +71,6 @@ export class UserService {
   }
 
   createUser(data: User) : Observable<User>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient.post<GetUserDetailResponse>(`${createUserEndPoint}`, data, {headers: this.headers})
         .subscribe({

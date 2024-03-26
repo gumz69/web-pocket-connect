@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { Subject } from 'rxjs';
-import { transaction } from '../transactions';
+import { Transaction } from '../transactions';
 import { TransactionsService } from '../transactions.service';
 
 @Component({
   selector: 'app-list-transaction',
   templateUrl: './list-transaction.component.html',
-  styleUrl: './list-transaction.component.css',
 })
 
 export class ListTransactionComponent implements OnInit {
-  listTransaksi: transaction[] = [];
+  listTransaksi: Transaction[] = [];
   selectedFilter: string = 'all';
   constructor(private services: TransactionsService) {}
   dtOptions: DataTables.Settings = {};
@@ -32,7 +31,7 @@ export class ListTransactionComponent implements OnInit {
     this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransaction()
-      .subscribe((transactions: transaction[]) => {
+      .subscribe((transactions: Transaction[]) => {
         this.listTransaksi = transactions;
         this.dtTrigger.next(this.listTransaksi);
       });
@@ -44,7 +43,7 @@ export class ListTransactionComponent implements OnInit {
     this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransactionByDay()
-      .subscribe((transactions: transaction[]) => {
+      .subscribe((transactions: Transaction[]) => {
         this.listTransaksi = transactions;
         this.dtTrigger.next(this.listTransaksi);
       });
@@ -56,7 +55,7 @@ export class ListTransactionComponent implements OnInit {
     this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransactionByWeek()
-      .subscribe((transactions: transaction[]) => {
+      .subscribe((transactions: Transaction[]) => {
         this.listTransaksi = transactions;
         this.dtTrigger.next(this.listTransaksi);
       });
@@ -68,37 +67,9 @@ export class ListTransactionComponent implements OnInit {
     this.dtTrigger.next(this.listTransaksi);
     this.services
       .getListTransactionByMonth()
-      .subscribe((transactions: transaction[]) => {
+      .subscribe((transactions: Transaction[]) => {
         this.listTransaksi = transactions;
         this.dtTrigger.next(this.listTransaksi);
       });
   }
-
-  // initializeDataTable(data: transaction[]) {
-  //   const dataTableData = data.map((item) => {
-  //     return { ...item, idTransaksi: item.idTransaksi.toString(), no: data.indexOf(item) + 1 };
-  //   });
-
-  //   if ($.fn.DataTable.isDataTable('#exampleTable')) {
-  //     const table = $('#exampleTable').DataTable();
-  //     table.clear().rows.add(dataTableData).draw();
-  //   } else {
-  //     // $('#exampleTable').DataTable({
-  //     //   data: dataTableData,
-  //     //   columns: [
-  //     //     { title: 'No', data: 'no' }, // New column for row numbers
-  //     //     { title: 'ID Transaksi', data: 'idTransaksi' },
-  //     //     { title: 'Nama Akun', data: 'namaNasabah' },
-  //     //     { title: 'Nomor Rekening', data: 'noRekening' },
-  //     //     { title: 'Jenis Transaksi', data: 'flag',
-  //     //    },
-  //     //     {
-  //     //       title: 'Waktu Transaksi',
-  //     //       data: 'waktuTransaksi',
-  //     //       render: formatDate
-  //     //     }
-  //     //   ]
-  //     // });
-  //   }
-  // }
 }

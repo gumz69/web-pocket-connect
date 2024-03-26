@@ -14,12 +14,13 @@ export class GrafikService {
   getPocketChart(): Observable<Array<PocketChart>> {
     return new Observable((observer) => {
       this.httpClient
-        .get<GetPocketChartResponse>(`${grafikPocketEndpoint}`, {headers: this.headers})
+        .get<GetPocketChartResponse>(`${grafikPocketEndpoint}`, {
+          headers: this.headers,
+        })
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
         });
     });
   }
-
 }

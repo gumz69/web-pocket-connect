@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { transactionChart } from '../transactions';
+import { TransactionChart } from '../transactions';
 import { TransactionsService } from '../transactions.service';
 @Component({
   selector: 'app-grafik',
   templateUrl: './grafik.component.html',
-  styleUrl: './grafik.component.css',
 })
 export class GrafikComponent implements OnInit {
-  transactionChart: transactionChart[] = [];
-  transactionDebit: transactionChart[] = [];
-  transactionKredit: transactionChart[] = [];
+  transactionChart: TransactionChart[] = [];
+  transactionDebit: TransactionChart[] = [];
+  transactionKredit: TransactionChart[] = [];
 
   constructor(private services: TransactionsService) {}
 
@@ -47,14 +46,12 @@ export class GrafikComponent implements OnInit {
             label: 'Pendapatan',
             data: this.transactionDebit.map((item) => item.nominalTransaksi),
             backgroundColor: ['rgba(38, 168, 137, 1)'],
-            // borderWidth: 1,
             barThickness: 60,
           },
           {
             label: 'Pengeluaran',
             data: this.transactionKredit.map((item) => item.nominalTransaksi),
             backgroundColor: ['rgba(231, 26, 26, 1)'],
-            // borderWidth: 1,
             barThickness: 60,
           },
         ],
@@ -62,7 +59,7 @@ export class GrafikComponent implements OnInit {
       options: {
         plugins: {
           legend: {
-            position: 'bottom', // Adjust legend position as needed
+            position: 'bottom',
             labels: {
               font: {
                 size: 20,

@@ -17,7 +17,7 @@ import { ThousandSeparatorPipe } from '../helper/thousand-separator.pipe';
     HttpClientModule,
     SidebarComponent,
     NavbarComponent,
-    ThousandSeparatorPipe,
+    ThousandSeparatorPipe
   ],
 })
 export class CategoriesModule { }
