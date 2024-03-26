@@ -9,13 +9,14 @@ import { listPocketEndpoint } from '../../api/api';
 })
 export class DetailPocketService {
   constructor(private httpClient: HttpClient) {}
-
+  token = localStorage.getItem('token');
+  headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getListPocket(): Observable<Array<pocket>> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers})
+        .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -24,11 +25,9 @@ export class DetailPocketService {
   }
 
   getListPocketByTabungan(): Observable<Array<pocket>> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers})
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -37,11 +36,9 @@ export class DetailPocketService {
   }
 
   getListPocketByPengeluaran(): Observable<Array<pocket>> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers})
+        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

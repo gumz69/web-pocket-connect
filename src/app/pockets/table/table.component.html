@@ -38,7 +38,7 @@
           <td class="px-6 py-4">{{item.nama}}</td>
           <td class="px-6 py-4">{{item.deskripsi}}</td>
           <td class="px-6 py-4">{{item.namaPembuat}}</td>
-          <td class="px-6 py-4">{{item.tanggalDibuat}}</td>
+          <td class="px-6 py-4">{{item.tanggalDibuat | date : "dd-MM-yyyy HH:mm:ss" }}</td>
         </tr>
 
       </tbody>

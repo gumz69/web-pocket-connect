@@ -9,13 +9,12 @@ import { GetListPocketResponse, pocket } from '../detail-pocket/detail-pocket';
 })
 export class PocketService {
   constructor(private httpClient: HttpClient) {}
-
+  token = localStorage.getItem('token');
+  headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
   getListTopPocket(): Observable<Array<pocket>> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-        .get<GetListPocketResponse>(`${listTopPocketEndpoint}`, {headers})
+        .get<GetListPocketResponse>(`${listTopPocketEndpoint}`, {headers: this.headers})
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
