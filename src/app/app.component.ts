@@ -4,12 +4,14 @@ import { initFlowbite } from 'flowbite';
 import { LoginService } from './login/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './app.service';
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  imports: [RouterModule, RouterOutlet, HttpClientModule],
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    imports: [RouterModule, RouterOutlet, HttpClientModule, SidebarComponent, NavbarComponent]
 })
 export class AppComponent implements OnInit {
   title = 'pocket-connect';

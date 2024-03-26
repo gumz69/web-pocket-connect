@@ -5,11 +5,6 @@ import { NgModule } from "@angular/core";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: CategoriesComponent,
   },
 
