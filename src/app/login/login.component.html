@@ -13,13 +13,16 @@
           >
             Sign in to your account
           </h1>
-          <form class="space-y-4 md:space-y-6" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+          <form
+            class="space-y-4 md:space-y-6"
+            (ngSubmit)="onSubmit()"
+            #loginForm="ngForm"
+          >
             <div>
               <label
                 for="email"
                 name="username"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                required
                 >Username</label
               >
               <input
@@ -39,29 +42,60 @@
                 >Password</label
               >
               <input
+                required
                 type="password"
                 name="username"
                 [(ngModel)]="password"
                 id="password"
-                placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="••••••••"
               />
             </div>
             <button
               type="submit"
-              class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              class="w-full text-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              [ngClass]="{
+                'bg-gray-600': !isFormFilled() ,
+                'bg-primary-600 hover:bg-primary-700': isFormFilled()
+              }"
+              [disabled]="!isFormFilled()"
             >
               Sign in
             </button>
             <!-- Modal error -->
-            <div *ngIf="errorMessage" class="fixed inset-0 flex items-center justify-center z-50">
+            <div
+              *ngIf="errorMessage"
+              class="fixed inset-0 flex items-center justify-center z-50"
+            >
               <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-              <div class="bg-white rounded-lg p-8 max-w-md w-full text-center z-50">
-                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+              <div
+                class="bg-white rounded-lg p-8 max-w-md w-full text-center z-50"
+              >
+                <svg
+                  class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
                 </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">{{ errorMessage }}</h3>
-                <button (click)="closeAndRedirect()" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                <h3
+                  class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"
+                >
+                  {{ errorMessage }}
+                </h3>
+                <button
+                  (click)="closeAndRedirect()"
+                  type="button"
+                  class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                >
                   Close
                 </button>
               </div>

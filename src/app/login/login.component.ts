@@ -47,4 +47,9 @@ export class LoginComponent implements OnInit {
     this.username = ''; // Reset nilai username
     this.password = ''; // Reset nilai password
   }
+
+  isFormFilled(): boolean {
+    return !!this.username && !!this.password;
+  }
 }
+
