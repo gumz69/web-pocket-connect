@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { loginEndpoint } from '../api/api';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoginData, LoginResponse } from './login';
-import { error } from 'jquery';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +30,6 @@ export class LoginService {
 
   getAuth(): boolean {
     const token = localStorage.getItem('token');
-    return !token ? false : true;
+    return !token?false:true;
   }
-
 }

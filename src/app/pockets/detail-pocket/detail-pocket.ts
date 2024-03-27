@@ -1,4 +1,4 @@
-export interface pocket{
+export interface Pocket{
   idPocket: number,
   tipe: string,
   nama: string,
@@ -8,5 +8,5 @@ export interface pocket{
 }
 
 export interface GetListPocketResponse{
-  data: Array<pocket>
+  data: Array<Pocket>
 }

@@ -1,40 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { initAccordions, initCarousels, initCollapses, initDials, initDismisses, initDrawers, initDropdowns, initFlowbite, initModals, initPopovers, initTabs, initTooltips } from 'flowbite';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { initFlowbite } from 'flowbite';
 import { LoginService } from './login/login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './app.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [RouterModule, RouterOutlet, HttpClientModule]
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  imports: [
+    RouterModule,
+    RouterOutlet,
+    HttpClientModule,
+    SidebarComponent,
+    NavbarComponent,
+    CommonModule,
+  ],
 })
 export class AppComponent implements OnInit {
   title = 'pocket-connect';
   isLogin: boolean;
+  isHidden: any = true;
+  isActiveRoute: any;
 
-  constructor(private service:LoginService, private services: AppService){
+  constructor(private service: LoginService, private services: AppService, private router: Router,) {
     this.isLogin = !!this.service.getAuth();
+    this.isActiveRoute = this.router;
   }
 
   ngOnInit(): void {
     initFlowbite();
     this.services.getAuth().subscribe({
-      next: (data) => {
-        console.log("Data:", data); // This is the actual data from the response
-      },
+      next: (data) => {},
       error: (error) => {
-        // console.error("Error:", error); // Log the error response
         if (error.status === 401) {
-          // Unauthorized error
-          console.log("Unauthorized error");
-          localStorage.removeItem("token");
+          localStorage.removeItem('token');
         }
-      }
-    } 
-    )
+      },
+    });
   }
 }

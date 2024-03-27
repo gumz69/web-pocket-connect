@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { transaction } from '../transactions';
+import { Transaction } from '../transactions';
 import { TransactionsService } from '../transactions.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrl: './table.component.css'
 })
 export class TableComponent implements OnInit{
-  topListTransaksi: transaction[] = [];
+  topListTransaksi: Transaction[] = [];
 
   constructor(private services: TransactionsService) {}
 

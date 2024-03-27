@@ -1,8 +1,8 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
-import { UserComponent } from "./user.component";
-import { TambahUserComponent } from "./tambah-user/tambah-user.component";
-import { EditUserComponent } from "./edit-user/edit-user.component";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { UserComponent } from './user.component';
+import { TambahUserComponent } from './tambah-user/tambah-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -12,16 +12,16 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: UserComponent
+    component: UserComponent,
   },
   {
     path: 'tambah-user',
-    component: TambahUserComponent
+    component: TambahUserComponent,
   },
   {
     path: 'edit-user/:id',
-    component: EditUserComponent
-  }
+    component: EditUserComponent,
+  },
 ];
 
 @NgModule({

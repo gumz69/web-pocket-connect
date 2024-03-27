@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
-import { pocket } from './detail-pocket';
+import { Pocket } from './detail-pocket';
 import { Subject } from 'rxjs';
 import { DetailPocketService } from './detail-pocket.service';
 
 @Component({
   selector: 'app-detail-pocket',
   templateUrl: './detail-pocket.component.html',
-  styleUrl: './detail-pocket.component.css',
 })
 export class DetailPocketComponent implements OnInit {
-  listPockets: pocket[] = [];
+  listPockets: Pocket[] = [];
   selectedFilter: string = 'all';
   constructor(private services: DetailPocketService) {}
 
@@ -30,7 +29,7 @@ export class DetailPocketComponent implements OnInit {
     this.selectedFilter = 'all';
     this.listPockets = [];
     this.dtTrigger.next(this.listPockets);
-    this.services.getListPocket().subscribe((pockets: pocket[]) => {
+    this.services.getListPocket().subscribe((pockets: Pocket[]) => {
       this.listPockets = pockets;
       this.dtTrigger.next(this.listPockets);
     });
@@ -40,7 +39,7 @@ export class DetailPocketComponent implements OnInit {
     this.selectedFilter = 'tabungan';
     this.listPockets = [];
     this.dtTrigger.next(this.listPockets);
-    this.services.getListPocketByTabungan().subscribe((pockets: pocket[]) => {
+    this.services.getListPocketByTabungan().subscribe((pockets: Pocket[]) => {
       this.listPockets = pockets;
       this.dtTrigger.next(this.listPockets);
     });
@@ -50,9 +49,11 @@ export class DetailPocketComponent implements OnInit {
     this.selectedFilter = 'pengeluaran';
     this.listPockets = [];
     this.dtTrigger.next(this.listPockets);
-    this.services.getListPocketByPengeluaran().subscribe((pockets: pocket[]) => {
-      this.listPockets = pockets;
-      this.dtTrigger.next(this.listPockets);
-    });
+    this.services
+      .getListPocketByPengeluaran()
+      .subscribe((pockets: Pocket[]) => {
+        this.listPockets = pockets;
+        this.dtTrigger.next(this.listPockets);
+      });
   }
 }

@@ -1,0 +1,6 @@
+projectKey=angular-pocket-connect
+serverUrl=http://localhost:9000
+serverVersion=10.4.1.88267
+dashboardUrl=http://localhost:9000/dashboard?id=angular-pocket-connect
+ceTaskId=bdf69997-ddf4-4e63-8b53-1ad28a6583dd
+ceTaskUrl=http://localhost:9000/api/ce/task?id=bdf69997-ddf4-4e63-8b53-1ad28a6583dd

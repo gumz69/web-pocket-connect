@@ -6,10 +6,8 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-grafik',
   templateUrl: './grafik.component.html',
-  styleUrl: './grafik.component.css',
 })
 export class GrafikComponent implements OnInit {
-
   chartdata: PocketChart[] = [];
   banyakPocket: any[] = [];
   bulanPocket: any[] = [];
@@ -27,8 +25,18 @@ export class GrafikComponent implements OnInit {
   renderBarChart() {
     const getMonthName = (monthNumber: number): string => {
       const monthNames = [
-        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember',
       ];
       return monthNames[monthNumber - 1];
     };
@@ -36,7 +44,12 @@ export class GrafikComponent implements OnInit {
     new Chart('barchart', {
       type: 'bar',
       data: {
-        labels: this.chartdata.map((item) => `${getMonthName(Number(item.bulanPembuatan))} ${item.tahunPembuatan}`),
+        labels: this.chartdata.map(
+          (item) =>
+            `${getMonthName(Number(item.bulanPembuatan))} ${
+              item.tahunPembuatan
+            }`
+        ),
         datasets: [
           {
             label: 'Jumlah Pocket',
@@ -49,17 +62,17 @@ export class GrafikComponent implements OnInit {
       options: {
         scales: {
           y: {
-            beginAtZero: true
-          }
+            beginAtZero: true,
+          },
         },
         plugins: {
           legend: {
-            position: 'bottom', // Adjust legend position as needed
+            position: 'bottom',
             labels: {
               font: {
                 size: 16,
               },
-            }
+            },
           },
         },
       },
