@@ -16,11 +16,7 @@ export class DetailPocketService {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-<<<<<<< HEAD
-        .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers: this.headers})
-=======
         .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers})
->>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -33,11 +29,7 @@ export class DetailPocketService {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-<<<<<<< HEAD
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers: this.headers})
-=======
         .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers})
->>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -50,11 +42,7 @@ export class DetailPocketService {
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
       this.httpClient
-<<<<<<< HEAD
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers: this.headers})
-=======
         .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers})
->>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

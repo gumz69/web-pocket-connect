@@ -5,6 +5,8 @@ import { UserService } from './user.service';
 import { data } from 'jquery';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { PopupDeleteUserComponent } from './popup-delete-user/popup-delete-user.component';
+import { MatDialog } from '@angular/material/dialog';
 
 declare var $: any;
 
@@ -18,7 +20,8 @@ export class UserComponent implements OnInit {
   listDetailUser: ListDetailUser [] = [];
 
   constructor(
-    private serviceListUser: UserService
+    private serviceListUser: UserService,
+    public dialog: MatDialog
     ) { }
     
   dtOptions: DataTables.Settings = {};
@@ -58,5 +61,37 @@ export class UserComponent implements OnInit {
 
     initFlowbite();
   }
-  
+  openPopUp(){
+    this.showConfirmationModalTerima = true
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PopupDeleteUserComponent, {
+      width: '250px', // Sesuaikan dengan lebar pop-up yang diinginkan
+      // Tambahkan opsi lainnya sesuai kebutuhan Anda
+    });
+
+    // Anda juga bisa menangani hasil dari dialog jika diperlukan
+    dialogRef.afterClosed().subscribe(result => {
+      // Lakukan sesuatu dengan result jika perlu
+      // this.result
+    });
+  }
+
+    createPinjamanAndChangeStatus() {
+    
+        console.error("Form data is not loaded.");
+      
+    };
+    showConfirmationModalTerima = false;
+    terima(confirmed: boolean) {
+      if (confirmed) {
+        this.createPinjamanAndChangeStatus()
+        console.log('Action confirmed');
+      } else {
+        // Cancel the action
+        console.log('Action cancelled');
+      }
+      this.showConfirmationModalTerima = true;
+    }
 }

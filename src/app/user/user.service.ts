@@ -1,18 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
-import {
-  GetListUserDetailResponse,
-  GetListUserResponse,
-  ListDetailUser,
-  ListUser,
-} from './user';
-import { listUserDetailEndPoint, listUserEndPoint } from '../api/api';
-=======
 import { CreateUserResponse, GetListUserDetailResponse, GetListUserResponse, GetUserDetailResponse, ListDetailUser, ListUser, User } from './user';
 import { createUserEndPoint, listUserDetailEndPoint, listUserEndPoint } from '../api/api';
->>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
 
 @Injectable({
   providedIn: 'root',
@@ -23,36 +13,6 @@ export class UserService {
   token = localStorage.getItem('token');
   headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
 
-<<<<<<< HEAD
-  constructor(
-    private httpClient: HttpClient,
-    private userDetailClient: HttpClient,
-  ) {}
-
-  getListUser(): Observable<Array<ListUser>> {
-    return new Observable((observer) => {
-      this.httpClient
-        .get<GetListUserResponse>(`${listUserEndPoint}`, {headers: this.headers})
-        .subscribe((response) => {
-          observer.next(response.data);
-          observer.complete();
-        });
-    });
-  }
-
-  getListUserDetail(): Observable<Array<ListDetailUser>> {
-    return new Observable((observer) => {
-      this.userDetailClient
-        .get<GetListUserDetailResponse>(`${listUserDetailEndPoint}`)
-        .subscribe((response) => {
-          observer.next(response.data);
-          observer.complete();
-        });
-    });
-  }
-  getUserDetail(id: string) {
-    return this.httpClient.get(`http://localhost:8080/api/nasabah/${id}`);
-=======
   constructor( 
     private httpClient: HttpClient
      ) { }
@@ -109,7 +69,6 @@ export class UserService {
         observer.complete();
       })
     })
->>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
   }
 
   createUser(data: User) : Observable<User>{
@@ -129,14 +88,6 @@ export class UserService {
     })
   }
 
-<<<<<<< HEAD
-  // // listUser: ListUser[] = [];
-  // onEditUser(id: string){
-  //   let dataNasabah = this.listUser.find((p)=> {return p.id === id});
-  //   console.log(dataNasabah)
-  //   // this.httpClient.put('http://localhost:8080/api/nasabah/' + id).subscribe();
-  // }
-=======
   deleteUser(id:string): Observable<any>{
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
@@ -156,5 +107,4 @@ export class UserService {
       })
     })
   }
->>>>>>> a2388c814b3970b88d92c9ad367aa23fe402f70f
 }

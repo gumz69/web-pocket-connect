@@ -8,8 +8,17 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TambahUserComponent } from './tambah-user/tambah-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
+import { PopupDeleteUserComponent } from './popup-delete-user/popup-delete-user.component';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
 
 
 
@@ -24,6 +33,12 @@ import { DataTablesModule } from 'angular-datatables';
     RouterLink,
     FormsModule,
     DataTablesModule,
+    PopupDeleteUserComponent,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatDialogContent,
+    ReactiveFormsModule
   ],
   exports:[
     UserComponent
