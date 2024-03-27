@@ -20,8 +20,6 @@ import {
   MatDialogContent,
 } from '@angular/material/dialog';
 
-
-
 @NgModule({
   declarations: [UserComponent, TambahUserComponent, EditUserComponent],
   imports: [
@@ -40,11 +38,6 @@ import {
     MatDialogContent,
     ReactiveFormsModule
   ],
-  exports:[
-    UserComponent
-  ]
+  exports: [UserComponent],
 })
-
-export class UserModule {
-  
-}
+export class UserModule {}

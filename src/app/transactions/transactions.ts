@@ -1,11 +1,11 @@
-export interface transactionChart {
+export interface TransactionChart {
   jenisTransaksi: string;
   bulanTransaksi: number;
   tahunTransaksi: number;
   nominalTransaksi: number;
 }
 
-export interface transaction {
+export interface Transaction {
   idTransaksi: number;
   namaNasabah: string;
   noRekening: string;
@@ -14,9 +14,9 @@ export interface transaction {
 }
 
 export interface GetTransactionChartResponse {
-  data: Array<transactionChart>;
+  data: Array<TransactionChart>;
 }
 
 export interface GetListTransactionResponse {
-  data: Array<transaction>;
+  data: Array<Transaction>;
 }

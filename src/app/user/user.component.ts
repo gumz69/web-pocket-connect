@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { ListDetailUser, ListUser } from './user';
 import { UserService } from './user.service';
-import { data } from 'jquery';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { PopupDeleteUserComponent } from './popup-delete-user/popup-delete-user.component';
 import { MatDialog } from '@angular/material/dialog';
 
-declare var $: any;
+declare let $: any;
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
 })
 export class UserComponent implements OnInit {
   listUser: ListUser[] = [];
-  listDetailUser: ListDetailUser [] = [];
+  listDetailUser: ListDetailUser[] = [];
+
+  // constructor(private serviceListUser: UserService) {}
 
   constructor(
     private serviceListUser: UserService,
@@ -35,24 +35,20 @@ export class UserComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error deleting user!');
-      }
-    }
-    );
+      },
+    });
   }
 
- 
   getAllNasabah() {
     this.listUser = [];
     this.dtTrigger.next(this.listUser);
-    this.serviceListUser.getListUser().subscribe(data => {
+    this.serviceListUser.getListUser().subscribe((data) => {
       this.listUser = data;
       this.dtTrigger.next(this.listUser);
     });
-
   }
-  
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,

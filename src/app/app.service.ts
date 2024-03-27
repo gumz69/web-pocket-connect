@@ -8,18 +8,17 @@ import { authEndpoint } from './api/api';
 export class AppService {
   constructor(private httpClient: HttpClient) {}
 
-  getAuth(): Observable<String> {
+  getAuth(): Observable<string> {
     const token = localStorage.getItem('token');
-    // Create headers object with Bearer token
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
-      this.httpClient.get<String>(`${authEndpoint}`, { headers }).subscribe({
+      this.httpClient.get<string>(`${authEndpoint}`, { headers }).subscribe({
         next: (response) => {
           observer.next(response);
           observer.complete();
         },
         error: (error) => {
-          observer.error(error); // Emit the error to the observer
+          observer.error(error);
         },
       });
     });

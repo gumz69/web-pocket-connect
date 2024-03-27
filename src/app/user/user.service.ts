@@ -1,8 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateUserResponse, GetListUserDetailResponse, GetListUserResponse, GetUserDetailResponse, ListDetailUser, ListUser, User } from './user';
+import {
+  GetListUserDetailResponse,
+  GetListUserResponse,
+  GetUserDetailResponse,
+  ListDetailUser,
+  ListUser,
+  User,
+} from './user';
 import { createUserEndPoint, listUserDetailEndPoint, listUserEndPoint } from '../api/api';
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,16 +21,14 @@ export class UserService {
   token = localStorage.getItem('token');
   headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
 
-  constructor( 
+  constructor(
     private httpClient: HttpClient
      ) { }
 
   getListUser(): Observable<Array<ListUser>>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer=>{
       this.httpClient
-      .get<GetListUserResponse>(`${listUserEndPoint}`, {headers})
+      .get<GetListUserResponse>(`${listUserEndPoint}`, {headers: this.headers})
       .subscribe((response) =>{
         console.log('List Data:', response);
         observer.next(response.data);
@@ -32,24 +38,20 @@ export class UserService {
   }
 
   getListUserDetail(): Observable<Array<ListDetailUser>>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer=>{
       this.httpClient
-      .get<GetListUserDetailResponse>(`${listUserDetailEndPoint}`, {headers})
+      .get<GetListUserDetailResponse>(`${listUserDetailEndPoint}`, {headers: this.headers})
       .subscribe(response=>{
         observer.next(response.data);
         observer.complete();
       })
     })
   }
- 
+
   getUserDetail(id:number) : Observable<User>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer=>{
       this.httpClient
-      .get<GetUserDetailResponse>(`${listUserDetailEndPoint}/${id}`, {headers})
+      .get<GetUserDetailResponse>(`${listUserDetailEndPoint}/${id}`, {headers: this.headers})
       .subscribe(response=>{
         console.log('Data ID: ', id, 'Response:', response.data)
         observer.next(response.data);
@@ -57,13 +59,11 @@ export class UserService {
       })
     })
   }
-  
+
   updateUser(data:User) : Observable<User>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer=>{
       this.httpClient
-      .put<User>(`${listUserDetailEndPoint}/${data.id}`, data, {headers})
+      .put<User>(`${listUserDetailEndPoint}/${data.id}`, data, {headers: this.headers})
       .subscribe(response=>{
         observer.next(response);
         observer.complete();
@@ -72,10 +72,8 @@ export class UserService {
   }
 
   createUser(data: User) : Observable<User>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable((observer) => {
-      this.httpClient.post<GetUserDetailResponse>(`${createUserEndPoint}`, data, {headers})
+      this.httpClient.post<GetUserDetailResponse>(`${createUserEndPoint}`, data, {headers: this.headers})
         .subscribe({
           next: (response) => {
             observer.next(response.data);
@@ -89,11 +87,9 @@ export class UserService {
   }
 
   deleteUser(id:string): Observable<any>{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
     return new Observable(observer=>{
       this.httpClient
-      .delete<any>(`${listUserDetailEndPoint}/${id}`, {headers})
+      .delete<any>(`${listUserDetailEndPoint}/${id}`, {headers: this.headers})
       .subscribe({
         next: (response) =>{
           console.log('User deleted successfully (ID:', id, ')');

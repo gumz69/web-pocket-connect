@@ -14,6 +14,6 @@ export interface GetTypePocketResponse {
   data: Array<TypePocket>;
 }
 
-export interface getCategoryPocketResponse {
+export interface GetCategoryPocketResponse {
   data: Array<CategoryPocket>;
 }

@@ -56,13 +56,12 @@
           Bulan Ini
         </button>
       </div>
-      <!-- <table id="exampleTable" class="display" style="width: 100%">
-      </table> -->
       <table
         datatable
         *ngIf="listTransaksi.length"
         [dtOptions]="dtOptions"
         [dtTrigger]="dtTrigger.asObservable() | async"
+        aria-describedby="transaction"
       >
         <thead>
           <tr>
@@ -76,11 +75,11 @@
 
         <tbody>
           <tr *ngFor="let item of listTransaksi">
-            <td class="px-6 py-4">{{ item.idTransaksi }}</td>
-            <td class="px-6 py-4">{{ item.namaNasabah }}</td>
-            <td class="px-6 py-4">{{ item.noRekening }}</td>
-            <td class="px-6 py-4">{{ item.flag }}</td>
-            <td class="px-6 py-4">
+            <td class="border px-6 py-4">{{ item.idTransaksi }}</td>
+            <td class="border px-6 py-4">{{ item.namaNasabah }}</td>
+            <td class="border px-6 py-4">{{ item.noRekening }}</td>
+            <td class="border px-6 py-4">{{ item.flag }}</td>
+            <td class="border px-6 py-4">
               {{ item.waktuTransaksi | date : "dd-MM-yyyy HH:mm:ss" }}
             </td>
           </tr>

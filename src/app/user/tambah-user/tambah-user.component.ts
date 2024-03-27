@@ -1,17 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { UserService } from '../user.service';
-import { ListDetailUser, User } from '../user';
+import { User } from '../user';
 
 @Component({
   selector: 'app-tambah-user',
   templateUrl: './tambah-user.component.html',
-  styleUrl: './tambah-user.component.css',
 })
 export class TambahUserComponent implements OnInit {
-  
   user: User = {
     id: '',
     userId: '',
@@ -24,8 +21,20 @@ export class TambahUserComponent implements OnInit {
     namaIbuKandung: '',
   };
   submitted = false;
-  
-  constructor(private router: Router, private serviceUser: UserService){}
+
+  username: string = '';
+  errorMessage: string | null = null;
+  letterPattern = /^[a-zA-Z]+$/;
+  constructor(private router: Router, private serviceUser: UserService) {}
+
+  validateUsername(event: any) {
+    this.username = event.target.value;
+    this.errorMessage = this.letterPattern.test(this.username) ? null : 'Invalid input: Only letters allowed.';
+  }
+
+  // isString(value: any): boolean {
+  //   return typeof value === 'string';
+  // }
 
   ngOnInit(): void {
     initFlowbite();
@@ -52,9 +61,7 @@ export class TambahUserComponent implements OnInit {
       },
       error: (error) => {
         console.log('Error creating user!');
-      }
-    }
-    );
+      },
+    });
   }
-
 }
