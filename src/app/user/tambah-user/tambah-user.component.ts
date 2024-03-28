@@ -22,15 +22,8 @@ export class TambahUserComponent implements OnInit {
   };
   submitted = false;
 
-  username: string = '';
-  errorMessage: string | null = null;
-  letterPattern = /^[a-zA-Z]+$/;
+  
   constructor(private router: Router, private serviceUser: UserService) {}
-
-  validateUsername(event: any) {
-    this.username = event.target.value;
-    this.errorMessage = this.letterPattern.test(this.username) ? null : 'Invalid input: Only letters allowed.';
-  }
 
   // isString(value: any): boolean {
   //   return typeof value === 'string';
