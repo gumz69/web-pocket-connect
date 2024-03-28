@@ -4,7 +4,7 @@ import { ListDetailUser, ListUser } from './user';
 import { UserService } from './user.service';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { PopupDeleteUserComponent } from './popup-delete-user/popup-delete-user.component';
+import { PopupDeleteUserComponent } from '../components/popup-delete-user/popup-delete-user.component';
 import { MatDialog } from '@angular/material/dialog';
 
 declare let $: any;
@@ -58,7 +58,11 @@ export class UserComponent implements OnInit {
     initFlowbite();
   }
   openPopUp(){
-    this.showConfirmationModalTerima = true
+    this.dialog.open(PopupDeleteUserComponent,{
+      // width: '60%',
+      // height: '400px'
+    })
+    // this.showConfirmationModalTerima = true
   }
 
   openDialog(): void {
@@ -79,15 +83,16 @@ export class UserComponent implements OnInit {
         console.error("Form data is not loaded.");
       
     };
-    showConfirmationModalTerima = false;
-    terima(confirmed: boolean) {
-      if (confirmed) {
-        this.createPinjamanAndChangeStatus()
-        console.log('Action confirmed');
-      } else {
-        // Cancel the action
-        console.log('Action cancelled');
-      }
-      this.showConfirmationModalTerima = true;
+  showConfirmationModalTerima = false;
+  terima(confirmed: boolean) {
+    if (confirmed) {
+      this.createPinjamanAndChangeStatus()
+      console.log('Action confirmed');
+    } else {
+      // Cancel the action
+      console.log('Action cancelled');
     }
+    this.showConfirmationModalTerima = true;
+  }
+  
 }

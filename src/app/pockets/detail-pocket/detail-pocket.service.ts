@@ -14,13 +14,9 @@ export class DetailPocketService {
   getListPocket(): Observable<Array<Pocket>> {
     return new Observable((observer) => {
       this.httpClient
-<<<<<<< HEAD
-        .get<GetListPocketResponse>(`${listPocketEndpoint}`, {headers})
-=======
         .get<GetListPocketResponse>(`${listPocketEndpoint}`, {
           headers: this.headers,
         })
->>>>>>> 58097b5c6169f25a2c62de0b9b5368e89fecd972
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -31,14 +27,10 @@ export class DetailPocketService {
   getListPocketByTabungan(): Observable<Array<Pocket>> {
     return new Observable((observer) => {
       this.httpClient
-<<<<<<< HEAD
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Tabungan`, {headers})
-=======
         .get<GetListPocketResponse>(
           `${listPocketEndpoint}?tipe=Pocket%20Tabungan`,
           { headers: this.headers }
         )
->>>>>>> 58097b5c6169f25a2c62de0b9b5368e89fecd972
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();
@@ -49,14 +41,10 @@ export class DetailPocketService {
   getListPocketByPengeluaran(): Observable<Array<Pocket>> {
     return new Observable((observer) => {
       this.httpClient
-<<<<<<< HEAD
-        .get<GetListPocketResponse>(`${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`, {headers})
-=======
         .get<GetListPocketResponse>(
           `${listPocketEndpoint}?tipe=Pocket%20Pengeluaran`,
           { headers: this.headers }
         )
->>>>>>> 58097b5c6169f25a2c62de0b9b5368e89fecd972
         .subscribe((response) => {
           observer.next(response.data);
           observer.complete();

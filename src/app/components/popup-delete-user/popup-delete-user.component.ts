@@ -12,7 +12,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class PopupDeleteUserComponent implements OnInit{
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    public dialogRef: MatDialogRef<PopupDeleteUserComponent>
   ){}
   @Input() data: string='';
   ngOnInit(): void {
@@ -36,6 +37,9 @@ confirmAction() {
   // this.result = '1';
   console.log(this.data);
   // Di sini Anda dapat menambahkan logika atau tindakan yang ingin Anda jalankan saat tombol diklik
+}
+cancelAndClosePopup(): void {
+  this.dialogRef.close();
 }
 
   // @Output() delete: EventEmitter<string> = new EventEmitter<string>();

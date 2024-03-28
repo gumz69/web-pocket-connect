@@ -3,12 +3,14 @@
     Yakin menerima pengajuan?
   </h2>
   <div class="flex justify-center gap-2 mt-6">
-    <button [routerLink]="['/user']" 
-      class="justify-center px-5 py-2 text-neutral-400 bg-zinc-100 rounded-3xl font-normal">
-        Batal
-      </button>
-      <button (click)="confirm()" class="justify-center px-5 py-2 text-white bg-green-600 rounded-3xl font-normal">
-        Konfirmasi
-      </button>
+    <button 
+    (click)="cancelAndClosePopup()"
+    class="justify-center px-5 py-2 text-neutral-400 bg-zinc-100 rounded-3xl font-normal">
+      Batal
+    </button>
+    <button (click)="confirm()" class="justify-center px-5 py-2 text-white bg-green-600 rounded-3xl font-normal">
+      Konfirmasi
+    </button>
+    <p> {{ data }}</p>
   </div>
 </div>
